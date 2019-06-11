@@ -1,10 +1,17 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DAL
 {
-    class ComDbContext
+    public class ComDbContext:DbContext
     {
+        public ComDbContext(DbContextOptions<ComDbContext> options):base(options)
+        {
+            Database.EnsureCreated();
+        }
+
+
     }
 }

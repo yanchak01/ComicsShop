@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    class Illustrator
+    public class Illustrator
     {
     }
 }

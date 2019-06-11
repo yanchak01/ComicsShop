@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    class Artist
+    public class Artist
     {
     }
 }

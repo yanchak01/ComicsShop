@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    public class Author
+    public class Corrector
     {
     }
 }
