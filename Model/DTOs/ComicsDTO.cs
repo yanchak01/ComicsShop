@@ -1,19 +1,26 @@
 ﻿using Model.MainModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace DAL.DBModels
+namespace Model.DTOs
 {
-    public class Author:IModelShop
+   public class ComicsDTO:IModelShop
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Name { get; set; }
+
+        public int NumbersOfPages { get; set; }
+
+        public string Description { get; set; }
+
+        public string Seria { get; set; }
+
         public DateTime DateCreated { get; set; }
+
         public DateTime DateModified { get; set; }
+
+        public int Price { get; set; }
+       
     }
 }

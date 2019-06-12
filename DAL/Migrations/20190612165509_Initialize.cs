@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,11 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     NumbersOfPages = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Seria = table.Column<string>(nullable: true),
-                    DateOfProduced = table.Column<DateTime>(nullable: false),
                     Price = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -30,6 +31,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -49,6 +52,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -68,6 +73,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -87,6 +94,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -106,6 +115,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

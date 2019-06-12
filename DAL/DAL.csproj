@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BL\BLL.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\OtherLogic\OtherLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

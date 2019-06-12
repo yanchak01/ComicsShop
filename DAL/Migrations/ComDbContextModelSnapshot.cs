@@ -26,6 +26,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -42,6 +46,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -56,7 +64,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfProduced");
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
 
                     b.Property<string>("Description");
 
@@ -80,6 +90,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -96,6 +110,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -111,6 +129,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("ComicsId");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
 
                     b.Property<string>("Name");
 

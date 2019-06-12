@@ -7,12 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-
 namespace DAL.Migrations
 {
     [DbContext(typeof(ComDbContext))]
-    [Migration("20190612133836_Initial")]
-    partial class Initial
+    [Migration("20190612165509_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +27,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("ComicsId");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
 
                     b.Property<string>("Name");
 
@@ -45,6 +48,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -59,7 +66,9 @@ namespace DAL.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfProduced");
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
 
                     b.Property<string>("Description");
 
@@ -83,6 +92,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -99,6 +112,10 @@ namespace DAL.Migrations
 
                     b.Property<Guid?>("ComicsId");
 
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -114,6 +131,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("ComicsId");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
 
                     b.Property<string>("Name");
 

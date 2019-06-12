@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL.ManageInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Model.DTOs;
 
 namespace ComicsShop.Controllers
 {
@@ -10,6 +12,12 @@ namespace ComicsShop.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IComicsManager comicsManager;
+
+        public ValuesController(IComicsManager comicsManager)
+        {
+            this.comicsManager = comicsManager;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -26,8 +34,10 @@ namespace ComicsShop.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ComicsDTO value)
         {
+            comicsManager.Insert(value);
+            
         }
 
         // PUT api/values/5
@@ -38,8 +48,9 @@ namespace ComicsShop.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            comicsManager.Delete(id);
         }
     }
 }

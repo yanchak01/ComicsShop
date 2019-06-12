@@ -1,5 +1,5 @@
-﻿using BLL.IRepo;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using OtherLogic.IRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +54,7 @@ namespace DAL.Reposetories
             return dbSet.ToList();
         }
 
-        public TEntity GetById(int id)
+        public TEntity GetById(Guid id)
         {
             return dbSet.Find(id);
         }
@@ -83,6 +83,10 @@ namespace DAL.Reposetories
             {
                 dbSet.Update(item);
             }
+        }
+        public int Save()
+        {
+           return context.SaveChanges();
         }
     }
 }
