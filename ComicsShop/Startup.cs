@@ -31,9 +31,10 @@ namespace ComicsShop
 
             services.AddDbContext<ComDbContext>(options => options.UseSqlServer(connection));
 
+            
 
 
-            services.AddDbContext<ComDbContext>(options => options.UseSqlServer(connection));
+           services.AddDbContext<ComDbContext>(options => options.UseSqlServer(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
