@@ -1,5 +1,6 @@
 ﻿using AuthorizationsAboutToken.Interfaces;
 using AuthorizationsAboutToken.Models;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace AuthorizationsAboutToken.Services
         private readonly IUserManagementService userManagementService;
         private readonly TokenManagemant tokenManagement;
 
-        public AuthenticateService(IUserManagementService userManagementService,TokenManagemant tokenManagement)
+        public AuthenticateService(IUserManagementService userManagementService, IOptions<TokenManagemant> tokenManagement)
         {
             this.userManagementService = userManagementService;
-            this.tokenManagement = tokenManagement;
+            this.tokenManagement = tokenManagement.Value;
 
         }
         public bool IsAuthenticated(TokenRequest request, out string token)

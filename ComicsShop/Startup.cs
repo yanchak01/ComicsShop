@@ -103,9 +103,11 @@ namespace ComicsShop
             #region Repositories
             services.AddScoped<IBaseRepository<Comics>, BaseRepository<Comics>>();
             services.AddScoped<IBaseRepository<User>, BaseRepository<User>>();
+            services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
-
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IComicsManager, ComicsManager>();
+            services.AddScoped<IUserManagementService, UserManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
