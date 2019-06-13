@@ -25,6 +25,18 @@ namespace BLL.Managers
             baseRepository.Delete(com);
         }
 
+        public IEnumerable<ComicsDTO> GetAll()
+        {
+           var comics = baseRepository.GetAll();
+            return mapper.Map<IEnumerable<Comics>, IEnumerable<ComicsDTO>>(comics);
+        }
+
+        public ComicsDTO GetById(Guid id)
+        {
+            var com = baseRepository.GetById(id);
+            return mapper.Map<Comics, ComicsDTO>(com);
+        }
+
         public void Insert(ComicsDTO comicsDTO)
         {
             Comics comics = mapper.Map<ComicsDTO, Comics>(comicsDTO);

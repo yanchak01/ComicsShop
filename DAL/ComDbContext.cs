@@ -1,4 +1,5 @@
 ﻿using DAL.DBModels;
+using DAL.UserModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace DAL
         DbSet<Corrector> Correctors { get; set; }
         DbSet<Illustrator> Illustrators { get; set; }
         DbSet<Tag> Tags { get; set; }
+        DbSet<User> Users { get; set; }
         #endregion
     }
 }

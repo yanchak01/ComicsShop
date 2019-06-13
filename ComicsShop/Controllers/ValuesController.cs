@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BLL.ManageInterfaces;
+using DAL.DBModels;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTOs;
 
@@ -20,9 +21,10 @@ namespace ComicsShop.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<ComicsDTO>> Get()
         {
-            return new string[] { "value1", "value2" };
+            ComicsDTO[]comicsDTO = comicsManager.GetAll().ToArray();
+            return comicsDTO;
         }
 
         // GET api/values/5

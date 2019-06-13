@@ -11,6 +11,8 @@ namespace BLL.ManageInterfaces
         void Insert(ComicsDTO comicsDTO);
         void Update(ComicsDTO comicsDTO);
         void Delete(Guid id);
-
+        IEnumerable<ComicsDTO> GetAll();
+        ComicsDTO GetById(Guid id);
+        
     }
 }
