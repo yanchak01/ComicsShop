@@ -15,5 +15,7 @@ namespace DAL.DBModels
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
+        public Comics Comics { get; set; }
+        public ICollection<ArtistComics> ArtistComicses { get; set; }
     }
 }

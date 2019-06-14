@@ -7,14 +7,13 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    public class Tag:IModelShop
+    public class Publisher : IModelShop
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
-        public ICollection<TagComics> TagComicses { get; set; }
+        public ICollection<PublisherComics> PublisherComicses { get; set; }
     }
 }

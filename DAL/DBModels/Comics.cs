@@ -24,15 +24,17 @@ namespace DAL.DBModels
 
         public int Price { get; set; }
 
-        public ICollection<Author> Authors { get; set; }
+        public ICollection<AuthorComics> AuthorComicses { get; set; }
 
-        public ICollection<Artist> Artists { get; set; }
+        public ICollection<ArtistComics> ArtistComicses { get; set; }
 
-        public ICollection<Illustrator> Illustrators { get; set; }
+        public ICollection<IllustratorComics> IllustratorComicses { get; set; }
 
-        public ICollection<Corrector> Correctors { get; set; }
+        public ICollection<CorrectorComics> CorrectorsComicses { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public ICollection<PublisherComics> PublisherComicses { get; set; }
+
+        public ICollection<TagComics> TagComicses { get; set; }
         
     }
 }
