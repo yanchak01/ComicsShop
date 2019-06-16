@@ -15,5 +15,12 @@ namespace Model.DTOs
         [Required]
         [Display(Name="Name")]
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+        [Required]
+        [Display(Name = "ConfirmPassword")]
+        public string ConfirmPassword { get; set; }
     }
 }

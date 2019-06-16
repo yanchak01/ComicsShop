@@ -19,6 +19,7 @@ namespace ComicsShop.Controllers
             this.authenticateService = authenticateService;
         }
 
+
         [AllowAnonymous]
         [HttpPost]
         public ActionResult RequestToken([FromBody] TokenRequest request)

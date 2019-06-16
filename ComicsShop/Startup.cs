@@ -83,9 +83,9 @@ namespace ComicsShop
             #region SQL connection
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<ComDbContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ComDbContext>(options => options.UseNpgsql(connection));
 
-           services.AddDbContext<ComDbContext>(options => options.UseSqlServer(connection));
+          
 
             #endregion
 
@@ -113,8 +113,8 @@ namespace ComicsShop
 
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
-            services.AddScoped<IAuthenticateService, AuthenticateService>();
-            //services.AddScoped<IComicsManager, ComicsManager>();
+            //services.AddScoped<IAuthenticateService, AuthenticateService>();
+            services.AddScoped<IComicsManager, ComicsManager>();
             //services.AddScoped<IUserManagementService, UserManagementService>();
         }
 
