@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    class ApplicationUser:IdentityUser<Guid>
+    public class ApplicationUser:IdentityUser
     {
 
     }

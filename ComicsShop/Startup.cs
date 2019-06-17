@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -80,12 +81,17 @@ namespace ComicsShop
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             #endregion 
 
-            #region SQL connection
+            #region NpgSQL connection
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<ComDbContext>(options => options.UseNpgsql(connection));
+            services.AddDbContext<ComDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-          
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ComDbContext>()
+                .AddDefaultTokenProviders();
+
+
 
             #endregion
 
@@ -116,6 +122,25 @@ namespace ComicsShop
             //services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IComicsManager, ComicsManager>();
             //services.AddScoped<IUserManagementService, UserManagementService>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings  
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 6;
+
+                // Lockout settings  
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings  
+                options.User.RequireUniqueEmail = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -135,5 +160,64 @@ namespace ComicsShop
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+
+        public static class MyIdentityDataInitializer
+        {
+            public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+            {
+                SeedRoles(roleManager);
+                SeedUsers(userManager);
+            }
+            public static void SeedRoles(RoleManager<IdentityRole> roleManager)
+            {
+                if (!roleManager.RoleExistsAsync("User").Result)
+                {
+                    IdentityRole role = new IdentityRole();
+                    role.Name = "User";
+                    IdentityResult roleResult = roleManager.
+                    CreateAsync(role).Result;
+                }
+
+
+                if (!roleManager.RoleExistsAsync("Admin").Result)
+                {
+                    IdentityRole role = new IdentityRole();
+                    role.Name = "Admin";
+                    IdentityResult roleResult = roleManager.
+                    CreateAsync(role).Result;
+                }
+
+                if (!roleManager.RoleExistsAsync("Moderator").Result)
+                {
+                    IdentityRole role = new IdentityRole();
+                    role.Name = "Moderator";
+                    IdentityResult roleResult = roleManager.
+                    CreateAsync(role).Result;
+                }
+                if (!roleManager.RoleExistsAsync("BlockedUser").Result)
+                {
+                    IdentityRole role = new IdentityRole();
+                    role.Name = "BlockedUser";
+                    IdentityResult roleResult = roleManager.
+                        CreateAsync(role).Result;
+                }
+            }
+            public static void SeedUsers(UserManager<ApplicationUser> userManager)
+            {
+                if (userManager.FindByNameAsync("User@gmail.com").Result == null)
+                {
+                    ApplicationUser user = new ApplicationUser();
+                    user.UserName = "User@gmail.com";
+                    user.Email = "User@gmail.com";
+
+                    IdentityResult result = userManager.CreateAsync(user, "1234ABCD").Result;
+                    if (result.Succeeded)
+                    {
+                        userManager.AddToRoleAsync(user, "User").Wait();
+                    }
+                }
+            }
+        }
     }
+    
 }

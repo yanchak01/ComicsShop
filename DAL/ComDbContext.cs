@@ -1,5 +1,6 @@
 ﻿using DAL.DBModels;
 using DAL.UserModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace DAL
 {
-    public class ComDbContext:DbContext
+    public class ComDbContext: IdentityDbContext<ApplicationUser>
     {
         public ComDbContext(DbContextOptions<ComDbContext> options):base(options)
         {
@@ -34,6 +35,9 @@ namespace DAL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
+
             builder.Entity<Comics>()
                 .HasMany(ac => ac.ArtistComicses)
                 .WithOne(ac => ac.Comics)
