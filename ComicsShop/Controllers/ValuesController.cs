@@ -23,8 +23,12 @@ namespace ComicsShop.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ComicsDTO>> Get()
         {
+
             ComicsDTO[]comicsDTO = comicsManager.GetAll().ToArray();
-            return comicsDTO;
+            if (comicsDTO != null)
+                return comicsDTO;
+            else
+                return null;
         }
 
         // GET api/values/5

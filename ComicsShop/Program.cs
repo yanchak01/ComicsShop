@@ -19,9 +19,7 @@ namespace ComicsShop
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
-            var host = CreateWebHostBuilder(args) as IWebHost;
-
+            var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
@@ -32,19 +30,19 @@ namespace ComicsShop
                     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
                     MyIdentityDataInitializer.SeedData(userManager, roleManager);
-
                 }
                 catch
                 {
 
                 }
             }
-           // host.Run();
+            host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .Build();
 
     }
 }

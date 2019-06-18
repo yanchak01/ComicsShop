@@ -86,7 +86,7 @@ namespace ComicsShop
             services.AddDbContext<ComDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultUI()
                 .AddEntityFrameworkStores<ComDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -120,7 +120,7 @@ namespace ComicsShop
             #endregion
             
             services.AddScoped<IComicsManager, ComicsManager>();
-            services.AddIdentity<ApplicationUser, IdentityRole>();
+            
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -161,6 +161,7 @@ namespace ComicsShop
 
         }
 
+
         public static class MyIdentityDataInitializer
         {
             public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
@@ -168,39 +169,23 @@ namespace ComicsShop
                 SeedRoles(roleManager);
                 
             }
+
+
             public static void SeedRoles(RoleManager<IdentityRole> roleManager)
             {
-                if (!roleManager.RoleExistsAsync("User").Result)
+                string[] Roles = { "Admin", "User", "ComicsSeller" };
+                foreach (var role in Roles)
                 {
-                    IdentityRole role = new IdentityRole();
-                    role.Name = "User";
-                    IdentityResult roleResult = roleManager.
-                    CreateAsync(role).Result;
+                    if (!roleManager.RoleExistsAsync(role).Result)
+                    {
+                        IdentityRole role1 = new IdentityRole();
+                        role1.Name = role;
+                        IdentityResult roleResult = roleManager.
+                        CreateAsync(role1).Result;
+                    }
                 }
 
-
-                if (!roleManager.RoleExistsAsync("Admin").Result)
-                {
-                    IdentityRole role = new IdentityRole();
-                    role.Name = "Admin";
-                    IdentityResult roleResult = roleManager.
-                    CreateAsync(role).Result;
-                }
-
-                if (!roleManager.RoleExistsAsync("Moderator").Result)
-                {
-                    IdentityRole role = new IdentityRole();
-                    role.Name = "Moderator";
-                    IdentityResult roleResult = roleManager.
-                    CreateAsync(role).Result;
-                }
-                if (!roleManager.RoleExistsAsync("BlockedUser").Result)
-                {
-                    IdentityRole role = new IdentityRole();
-                    role.Name = "BlockedUser";
-                    IdentityResult roleResult = roleManager.
-                        CreateAsync(role).Result;
-                }
+                
             }
            
         }
