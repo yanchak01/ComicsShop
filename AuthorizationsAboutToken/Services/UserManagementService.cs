@@ -36,16 +36,18 @@ namespace AuthorizationsAboutToken.Services
         }
         public bool IsValidUser(LoginDTO loginDTO)
         {
-            //var user = mapper.Map<LoginDTO, ApplicationUser>(loginDTO);
+            var usering = mapper.Map<LoginDTO, ApplicationUser>(loginDTO);
+
             var user = userManager.FindByNameAsync(loginDTO.UserName).Result;
-            if (user is null)
+            
+            var UserCheck = signInManager.UserManager.CheckPasswordAsync(user, loginDTO.Password).Result;
+            if (UserCheck == true)
             {
-                return false;
+                return true;
             }
             else
             {
-
-                return true;
+                return false;
             }
         }
     }
