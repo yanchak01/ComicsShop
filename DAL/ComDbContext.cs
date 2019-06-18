@@ -11,7 +11,7 @@ namespace DAL
     {
         public ComDbContext(DbContextOptions<ComDbContext> options):base(options)
         {
-           // Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         #region MainTables

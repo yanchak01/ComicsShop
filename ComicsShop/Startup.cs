@@ -120,7 +120,7 @@ namespace ComicsShop
             #endregion
             
             services.AddScoped<IComicsManager, ComicsManager>();
-           
+            services.AddIdentity<ApplicationUser, IdentityRole>();
 
             services.Configure<IdentityOptions>(options =>
             {
