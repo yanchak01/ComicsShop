@@ -44,6 +44,7 @@ namespace AuthorizationsAboutToken.Services
             }
             else
             {
+
                 return true;
             }
         }
