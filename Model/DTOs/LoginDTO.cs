@@ -1,22 +1,18 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace AuthorizationsAboutToken
+namespace Model.DTOs
 {
-    public class TokenRequest
+    public class LoginDTO
     {
-
-
         [Required]
-        [JsonProperty("username")]
+        [EmailAddress]
         public string UserName { get; set; }
 
-
         [Required]
-        [JsonProperty("password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

@@ -14,7 +14,6 @@ using DAL;
 using DAL.Authorize;
 using DAL.DBModels;
 using DAL.Reposetories;
-using DAL.UserModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -115,13 +114,13 @@ namespace ComicsShop
             services.AddScoped<IBaseRepository<Publisher>, BaseRepository<Publisher>>();
             services.AddScoped<IBaseRepository<Tag>, BaseRepository<Tag>>();
 
-
+            services.AddScoped<IBaseRepository<ApplicationUser>, BaseRepository<ApplicationUser>>();
 
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
-            //services.AddScoped<IAuthenticateService, AuthenticateService>();
+            
             services.AddScoped<IComicsManager, ComicsManager>();
-            //services.AddScoped<IUserManagementService, UserManagementService>();
+           
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -159,6 +158,7 @@ namespace ComicsShop
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+
         }
 
         public static class MyIdentityDataInitializer
@@ -166,7 +166,7 @@ namespace ComicsShop
             public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
             {
                 SeedRoles(roleManager);
-                SeedUsers(userManager);
+                
             }
             public static void SeedRoles(RoleManager<IdentityRole> roleManager)
             {
@@ -202,21 +202,7 @@ namespace ComicsShop
                         CreateAsync(role).Result;
                 }
             }
-            public static void SeedUsers(UserManager<ApplicationUser> userManager)
-            {
-                if (userManager.FindByNameAsync("User@gmail.com").Result == null)
-                {
-                    ApplicationUser user = new ApplicationUser();
-                    user.UserName = "User@gmail.com";
-                    user.Email = "User@gmail.com";
-
-                    IdentityResult result = userManager.CreateAsync(user, "1234ABCD").Result;
-                    if (result.Succeeded)
-                    {
-                        userManager.AddToRoleAsync(user, "User").Wait();
-                    }
-                }
-            }
+           
         }
     }
     

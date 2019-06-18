@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL;
 using DAL.DBModels;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +21,7 @@ namespace ComicsShop
         {
             CreateWebHostBuilder(args).Run();
             var host = CreateWebHostBuilder(args);
+
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
@@ -29,7 +31,11 @@ namespace ComicsShop
 
                     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
+
+
                     MyIdentityDataInitializer.SeedData(userManager, roleManager);
+
+
                 }
                 catch
                 {
@@ -42,5 +48,6 @@ namespace ComicsShop
         public static IWebHost CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>().Build();
+
     }
 }

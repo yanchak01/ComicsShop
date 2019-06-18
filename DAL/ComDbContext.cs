@@ -1,5 +1,4 @@
 ﻿using DAL.DBModels;
-using DAL.UserModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,7 +11,7 @@ namespace DAL
     {
         public ComDbContext(DbContextOptions<ComDbContext> options):base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         #region MainTables

@@ -9,12 +9,12 @@ namespace Model.DTOs
     {
         [Required]
         [EmailAddress]
-       // [Display(Name = "Email")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name="Name")]
-        public string Name { get; set; }
+        [Display(Name="UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [Display(Name = "Password")]

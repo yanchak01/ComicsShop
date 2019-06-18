@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AuthorizationsAboutToken;
+using AutoMapper;
 using DAL.DBModels;
 using Model.DTOs;
 using System;
@@ -12,6 +13,8 @@ namespace BLL.Services
         public MappingProfile()
         {
             CreateMap<Comics, ComicsDTO>().ReverseMap();
+            CreateMap<LoginDTO, ApplicationUser>().ReverseMap();
+            CreateMap<TokenRequest, LoginDTO>().ReverseMap();
         }
     }
 }
