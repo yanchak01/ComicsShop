@@ -170,10 +170,9 @@ namespace ComicsShop
                 
             }
 
-
             public static void SeedRoles(RoleManager<IdentityRole> roleManager)
             {
-                string[] Roles = { "Admin", "User", "ComicsSeller" };
+                string[] Roles = { RolesEnum.Admin.ToString(), RolesEnum.ComicsSeller.ToString(), RolesEnum.User.ToString() };
                 foreach (var role in Roles)
                 {
                     if (!roleManager.RoleExistsAsync(role).Result)

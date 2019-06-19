@@ -32,6 +32,17 @@ namespace ComicsShop.Controllers
             comicsManager.Insert(comicsDTO);
 
         }
+
+        public void DeleteComics(ComicsDTO comicsDTO)
+        {
+            var comics =comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name).FirstOrDefault();
+            comicsManager.Delete(comics.Id);
+        }
+
+        public void Update(ComicsDTO comicsDTO)
+        {
+            comicsManager.Update(comicsDTO);
+        }
         
     }
 }

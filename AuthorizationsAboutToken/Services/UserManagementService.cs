@@ -40,7 +40,7 @@ namespace AuthorizationsAboutToken.Services
 
             var user = userManager.FindByNameAsync(loginDTO.UserName).Result;
             
-            var UserCheck = signInManager.UserManager.CheckPasswordAsync(user, loginDTO.Password).Result;
+            var UserCheck = userManager.CheckPasswordAsync(user, loginDTO.Password).Result;
             if (UserCheck == true)
             {
                 return true;

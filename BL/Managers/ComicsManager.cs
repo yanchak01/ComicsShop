@@ -23,6 +23,7 @@ namespace BLL.Managers
         {
             Comics com = baseRepository.GetById(id);
             baseRepository.Delete(com);
+            baseRepository.Save();
         }
 
         public IEnumerable<ComicsDTO> GetAll()
@@ -50,6 +51,7 @@ namespace BLL.Managers
         {
             Comics comics = mapper.Map<ComicsDTO, Comics>(comicsDTO);
             baseRepository.Insert(comics);
+            baseRepository.Save();
         }
     }
 }

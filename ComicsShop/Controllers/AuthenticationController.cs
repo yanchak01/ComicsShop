@@ -2,9 +2,11 @@
 using AuthorizationsAboutToken.Interfaces;
 using DAL.DBModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTOs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +52,22 @@ namespace ComicsShop.Controllers
 
         }
 
+
+        [AllowAnonymous]
+        [HttpPost("GetToken")]
+        // [ValidateAntiForgeryToken]
+        public async Task GetToken([FromBody]TokenRequest request)
+        {
+
+            var identity = await authenticateService.GetIdentity(request.UserName, request.Password);
+
+            var token = authenticateService.GenerateToken(identity);
+
+            await Response.WriteAsync(JsonConvert.SerializeObject("Token : " + token,
+                new JsonSerializerSettings { Formatting = Formatting.Indented }
+            ));
+        }
+
         [AllowAnonymous]
         [HttpPost("Registration")]
         public async Task Registration(RegistrationDTO model)
@@ -57,18 +75,20 @@ namespace ComicsShop.Controllers
             //ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                var role = model.Role == null ? model.Role = RolesEnum.User.ToString() : model.Role;
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
-                    // PhoneNumber = model.Phone,
+                    PhoneNumber = model.Phone,
+                    
 
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "User");
+                    await userManager.AddToRoleAsync(user, role);
                 }
 
                 
