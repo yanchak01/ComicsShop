@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Model.MainModelsDTO;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.DTOs
 {
-    public class WriterDTO
+    public class WriterDTO:ComicsAuthorDTO
     {
-        public PositionsEnum Position = PositionsEnum.Writer;
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        
     }
 }

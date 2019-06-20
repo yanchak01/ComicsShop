@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Model.MainModelsDTO;
 namespace Model.DTOs
 {
-    public class IllustratorDTO
+    public class IllustratorDTO:ComicsAuthorDTO
     {
-        public PositionsEnum Position = PositionsEnum.Illustrator;
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        
     }
 }

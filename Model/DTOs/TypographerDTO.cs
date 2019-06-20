@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Model.MainModelsDTO;
 namespace Model.DTOs
 {
-    public class TypographerDTO
+    public class TypographerDTO:ComicsAuthorDTO
     {
-        public PositionsEnum Position = PositionsEnum.Typographer;
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+       
     }
 }
