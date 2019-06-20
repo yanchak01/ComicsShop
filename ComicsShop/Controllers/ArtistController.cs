@@ -9,9 +9,9 @@ namespace ComicsShop.Controllers
     [ApiController]
     public class ArtistController
     {
-        private readonly IEmployeeManager<ArtistDTO> _employeeManager;
+        private readonly IComicsAuthorManager<ArtistDTO> _employeeManager;
 
-        public ArtistController(IEmployeeManager<ArtistDTO> employeeManager)
+        public ArtistController(IComicsAuthorManager<ArtistDTO> employeeManager)
         {
             _employeeManager = employeeManager;
         }

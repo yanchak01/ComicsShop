@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtherLogic", "OtherLogic\OtherLogic.csproj", "{0305EC62-FD84-4607-8F9A-95D89B257486}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationsAboutToken", "AuthorizationsAboutToken\AuthorizationsAboutToken.csproj", "{DA8D19D1-CF69-46D2-8129-D66558802389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizationsAboutToken", "AuthorizationsAboutToken\AuthorizationsAboutToken.csproj", "{DA8D19D1-CF69-46D2-8129-D66558802389}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

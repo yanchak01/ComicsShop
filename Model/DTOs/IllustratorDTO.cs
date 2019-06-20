@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace Model.DTOs
 {
-    class IllustratorDTO
+    public class IllustratorDTO
     {
+        public PositionsEnum Position = PositionsEnum.Illustrator;
+        [Display(Name = "Name")]
+        public string Name { get; set; }
     }
 }

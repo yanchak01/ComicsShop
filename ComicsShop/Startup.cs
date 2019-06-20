@@ -95,14 +95,14 @@ namespace ComicsShop
             services.AddScoped<IBaseRepository<Tag>, BaseRepository<Tag>>();
             services.AddScoped<IBaseRepository<ApplicationUser>, BaseRepository<ApplicationUser>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
-            services.AddScoped<IBaseRepository<Employee>,BaseRepository<Employee>>();
+            services.AddScoped<IBaseRepository<ComicsAuthor>,BaseRepository<ComicsAuthor>>();
             services.AddScoped<IBaseRepository<ArtistDTO>, BaseRepository<ArtistDTO>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
 
             services.AddScoped<IComicsManager, ComicsManager>();
-            services.AddScoped<IEmployeeManager<Employee>, EmployeeManager<Employee>>();
-            services.AddScoped<IEmployeeManager<ArtistDTO>, EmployeeManager<ArtistDTO>>();
+            services.AddScoped<IComicsAuthorManager<ComicsAuthor>, ComicsAuthorManager<ComicsAuthor>>();
+            services.AddScoped<IComicsAuthorManager<ArtistDTO>, ComicsAuthorManager<ArtistDTO>>();
 
             services.Configure<IdentityOptions>(options =>
             {

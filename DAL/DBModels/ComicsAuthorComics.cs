@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    public class EmployeeComics
+    public class ComicsAuthorComics
     {
         public Guid EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public ComicsAuthor Employee { get; set; }
         public Guid ComicsId { get; set; }
         public Comics Comics { get; set; }
     }

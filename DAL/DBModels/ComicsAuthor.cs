@@ -5,11 +5,11 @@ using System.Text;
 
 namespace DAL.DBModels
 {
-    public class Employee:Entity
+    public class ComicsAuthor:Entity
     {
         public string Name { get; set; }
-        public string Position { get; set; }
-        public ICollection<EmployeeComics> EmployeeComics { get; set; }
+        public PositionsEnum Position { get; set; }
+        public ICollection<ComicsAuthorComics> EmployeeComics { get; set; }
 
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Model.DTOs
 {
-    class WriterDTO
+    public class WriterDTO
     {
+        public PositionsEnum Position = PositionsEnum.Writer;
+        [Display(Name = "Name")]
+        public string Name { get; set; }
     }
 }

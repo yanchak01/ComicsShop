@@ -10,5 +10,6 @@ namespace Model.DTOs
         public string Description { get; set; }
         public string Seria { get; set; }
         public int Price { get; set; }
+        public TypesComicsEnum TypesComics { get; set; }
     }
 }

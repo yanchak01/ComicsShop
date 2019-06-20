@@ -16,9 +16,9 @@ namespace DAL
 
         #region MainTables
         DbSet<Comics> Comicses { get; set; }
-        DbSet<Employee> Employees { get; set; }
+        DbSet<ComicsAuthor> Employees { get; set; }
         DbSet<Tag> Tags { get; set; }
-        DbSet<EmployeeComics> EmployeeComics { get; set; }
+        DbSet<ComicsAuthorComics> EmployeeComics { get; set; }
         DbSet<TagComics> TagComics { get; set; }
         #endregion
 
@@ -42,7 +42,7 @@ namespace DAL
 
            
             builder.Entity<TagComics>().HasKey(tg => new { tg.ComicsId, tg.TagId });
-            builder.Entity<EmployeeComics>().HasKey(ec => new { ec.ComicsId, ec.EmployeeId });
+            builder.Entity<ComicsAuthorComics>().HasKey(ec => new { ec.ComicsId, ec.EmployeeId });
                 
         }
     }

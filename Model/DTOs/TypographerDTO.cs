@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace Model.DTOs
 {
-    class TypographerDTO
+    public class TypographerDTO
     {
+        public PositionsEnum Position = PositionsEnum.Typographer;
+        [Display(Name = "Name")]
+        public string Name { get; set; }
     }
 }

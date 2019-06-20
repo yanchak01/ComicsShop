@@ -8,7 +8,7 @@ namespace Model.DTOs
 {
     public class ArtistDTO:EntityDTO
     {
-        public string Position = PositionsEnum.Artist.ToString();
+        public PositionsEnum Position = PositionsEnum.Artist;
         [Display(Name = "Name")]
         public string Name { get; set; }
     }
