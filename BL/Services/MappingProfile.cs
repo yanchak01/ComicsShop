@@ -15,6 +15,7 @@ namespace BLL.Services
             CreateMap<Comics, ComicsDTO>().ReverseMap();
             CreateMap<LoginDTO, ApplicationUser>().ReverseMap();
             CreateMap<TokenRequest, LoginDTO>().ReverseMap();
+            CreateMap<ArtistDTO, Employee>().ReverseMap();
         }
     }
 }

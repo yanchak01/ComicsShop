@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ComDbContext))]
-    [Migration("20190618191317_initial")]
-    partial class initial
+    [Migration("20190620110144_RebuildProject")]
+    partial class RebuildProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,68 +71,6 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DAL.DBModels.Artist", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("ComicsId");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ComicsId");
-
-                    b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.ArtistComics", b =>
-                {
-                    b.Property<Guid>("ArtistId");
-
-                    b.Property<Guid>("ComicsId");
-
-                    b.HasKey("ArtistId", "ComicsId");
-
-                    b.HasIndex("ComicsId");
-
-                    b.ToTable("ArtistComics");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.Author", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Authors");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.AuthorComics", b =>
-                {
-                    b.Property<Guid>("AuthorId");
-
-                    b.Property<Guid>("ComicsId");
-
-                    b.HasKey("AuthorId", "ComicsId");
-
-                    b.HasIndex("ComicsId");
-
-                    b.ToTable("AuthorComics");
-                });
-
             modelBuilder.Entity("DAL.DBModels.Comics", b =>
                 {
                     b.Property<Guid>("Id")
@@ -157,7 +95,7 @@ namespace DAL.Migrations
                     b.ToTable("Comicses");
                 });
 
-            modelBuilder.Entity("DAL.DBModels.Corrector", b =>
+            modelBuilder.Entity("DAL.DBModels.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -168,78 +106,24 @@ namespace DAL.Migrations
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Correctors");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.CorrectorComics", b =>
-                {
-                    b.Property<Guid>("CorrectorId");
-
-                    b.Property<Guid>("ComicsId");
-
-                    b.HasKey("CorrectorId", "ComicsId");
-
-                    b.HasIndex("ComicsId");
-
-                    b.ToTable("CorrectorComics");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.Illustrator", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<string>("Name");
+                    b.Property<string>("Position");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Illustrators");
+                    b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("DAL.DBModels.IllustratorComics", b =>
+            modelBuilder.Entity("DAL.DBModels.EmployeeComics", b =>
                 {
                     b.Property<Guid>("ComicsId");
 
-                    b.Property<Guid>("IllustratorId");
+                    b.Property<Guid>("EmployeeId");
 
-                    b.HasKey("ComicsId", "IllustratorId");
+                    b.HasKey("ComicsId", "EmployeeId");
 
-                    b.HasIndex("IllustratorId");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("IllustratorComics");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.Publisher", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Publisher");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.PublisherComics", b =>
-                {
-                    b.Property<Guid>("ComicsId");
-
-                    b.Property<Guid>("PublisherId");
-
-                    b.HasKey("ComicsId", "PublisherId");
-
-                    b.HasIndex("PublisherId");
-
-                    b.ToTable("PublisherComics");
+                    b.ToTable("EmployeeComics");
                 });
 
             modelBuilder.Entity("DAL.DBModels.Tag", b =>
@@ -378,75 +262,16 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DAL.DBModels.Artist", b =>
+            modelBuilder.Entity("DAL.DBModels.EmployeeComics", b =>
                 {
                     b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany()
-                        .HasForeignKey("ComicsId");
-                });
-
-            modelBuilder.Entity("DAL.DBModels.ArtistComics", b =>
-                {
-                    b.HasOne("DAL.DBModels.Artist", "Artist")
-                        .WithMany("ArtistComicses")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("ArtistComicses")
-                        .HasForeignKey("ComicsId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DAL.DBModels.AuthorComics", b =>
-                {
-                    b.HasOne("DAL.DBModels.Author", "Author")
-                        .WithMany("AuthorComicses")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("AuthorComicses")
-                        .HasForeignKey("ComicsId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DAL.DBModels.CorrectorComics", b =>
-                {
-                    b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("CorrectorsComicses")
+                        .WithMany("EmployeeComicses")
                         .HasForeignKey("ComicsId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DAL.DBModels.Corrector", "Corrector")
-                        .WithMany("CorrectorsComicses")
-                        .HasForeignKey("CorrectorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DAL.DBModels.IllustratorComics", b =>
-                {
-                    b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("IllustratorComicses")
-                        .HasForeignKey("ComicsId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DAL.DBModels.Illustrator", "Illustrator")
-                        .WithMany("IllustratorComicses")
-                        .HasForeignKey("IllustratorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DAL.DBModels.PublisherComics", b =>
-                {
-                    b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("PublisherComicses")
-                        .HasForeignKey("ComicsId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DAL.DBModels.Publisher", "Publisher")
-                        .WithMany("PublisherComicses")
-                        .HasForeignKey("PublisherId")
+                    b.HasOne("DAL.DBModels.Employee", "Employee")
+                        .WithMany("EmployeeComics")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

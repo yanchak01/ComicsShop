@@ -23,7 +23,7 @@ namespace Model.DTOs
         [Display(Name = "ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Phone")]
         [Phone]
         [RegularExpression(@"^\+[0-9]{11,12}$", ErrorMessage = "Wrong phone number")]

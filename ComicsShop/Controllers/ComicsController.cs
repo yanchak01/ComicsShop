@@ -15,33 +15,39 @@ namespace ComicsShop.Controllers
     [ApiController]
     public class ComicsController:ControllerBase
     {
-        private readonly IComicsManager comicsManager;
-        private readonly IMapper mapper;
+        private readonly IComicsManager _comicsManager;
+        private readonly IMapper _mapper;
+      
         
         public ComicsController(IComicsManager comicsManager, IMapper mapper)
         {
-            this.comicsManager = comicsManager;
-            this.mapper = mapper;
+            _comicsManager = comicsManager;
+            _mapper = mapper;
+           
         }
 
-        [HttpPost]
-        [Authorize(Roles ="User")]
-        public void CreateComics(ComicsDTO comicsDTO)
+
+        [HttpPost("cc")]
+       // [Authorize(Roles ="ComicsSeller")]
+        public void CreateComics(ArtistDTO comicsDTO)
         {
-
-            comicsManager.Insert(comicsDTO);
-
+            
+            
         }
 
+        [HttpDelete]
+        [Authorize(Roles = "ComicsSeller")]
         public void DeleteComics(ComicsDTO comicsDTO)
         {
-            var comics =comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name).FirstOrDefault();
-            comicsManager.Delete(comics.Id);
+            var comics =_comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name).FirstOrDefault();
+            _comicsManager.Delete(comics.Id);
         }
 
-        public void Update(ComicsDTO comicsDTO)
+        [HttpPut]
+        [Authorize(Roles = "ComicsSeller")]
+        public void UpdateComics(ComicsDTO comicsDTO)
         {
-            comicsManager.Update(comicsDTO);
+            _comicsManager.Update(comicsDTO);
         }
         
     }

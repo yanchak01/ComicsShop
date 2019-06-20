@@ -2,7 +2,7 @@
 
 namespace DAL.Migrations
 {
-    public partial class AddRoles : Migration
+    public partial class RebuildProject2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.Managers
+namespace BLL.ManageInterfaces
 {
-    public class AuthorManager
+    public interface ITagManager
     {
     }
 }

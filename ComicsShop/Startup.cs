@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AuthorizationsAboutToken.Interfaces;
 using AuthorizationsAboutToken.Models;
 using AuthorizationsAboutToken.Services;
@@ -11,21 +8,18 @@ using BLL.ManageInterfaces;
 using BLL.Managers;
 using BLL.Services;
 using DAL;
-using DAL.Authorize;
 using DAL.DBModels;
 using DAL.Reposetories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Model.DTOs;
 using OtherLogic.IRepo;
 
 namespace ComicsShop
@@ -36,9 +30,7 @@ namespace ComicsShop
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -66,7 +58,6 @@ namespace ComicsShop
                     ValidateAudience = false
                 };
             });
-
             TokenValidationParameters ValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -76,7 +67,6 @@ namespace ComicsShop
             };
 
             services.AddScoped<IUserManagementService, UserManagementService>();
-
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             #endregion 
 
@@ -86,41 +76,33 @@ namespace ComicsShop
             services.AddDbContext<ComDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultUI()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                //.AddDefaultUI()
                 .AddEntityFrameworkStores<ComDbContext>()
                 .AddDefaultTokenProviders();
-
-
-
             #endregion
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
             #region Repositories
+
             services.AddScoped<IBaseRepository<Comics>, BaseRepository<Comics>>();
-            services.AddScoped<IBaseRepository<Artist>, BaseRepository<Artist>>();
-            services.AddScoped<IBaseRepository<Author>, BaseRepository<Author>>();
-            services.AddScoped<IBaseRepository<Corrector>, BaseRepository<Corrector>>();
-            services.AddScoped<IBaseRepository<Illustrator>, BaseRepository<Illustrator>>();
-            services.AddScoped<IBaseRepository<Publisher>, BaseRepository<Publisher>>();
             services.AddScoped<IBaseRepository<Tag>, BaseRepository<Tag>>();
-
             services.AddScoped<IBaseRepository<ApplicationUser>, BaseRepository<ApplicationUser>>();
-
+            services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
+            services.AddScoped<IBaseRepository<Employee>,BaseRepository<Employee>>();
+            services.AddScoped<IBaseRepository<ArtistDTO>, BaseRepository<ArtistDTO>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
-            
+
             services.AddScoped<IComicsManager, ComicsManager>();
-            
+            services.AddScoped<IEmployeeManager<Employee>, EmployeeManager<Employee>>();
+            services.AddScoped<IEmployeeManager<ArtistDTO>, EmployeeManager<ArtistDTO>>();
 
             services.Configure<IdentityOptions>(options =>
             {
