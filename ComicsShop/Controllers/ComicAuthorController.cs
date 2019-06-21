@@ -1,7 +1,9 @@
 ﻿using BLL.ManageInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Model.DTOs;
 using Model.MainModelsDTO;
 using System;
+using System.Collections.Generic;
 
 namespace ComicsShop.Controllers
 {
@@ -17,6 +19,7 @@ namespace ComicsShop.Controllers
         [HttpPost]
         public void CreateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
+
             _comicsAuthorManager.Insert(comicsAuthorDTO);
 
         }
@@ -30,5 +33,11 @@ namespace ComicsShop.Controllers
         {
             _comicsAuthorManager.Delete(Id);
         }
+
+        //[HttpGet]
+        //public IEnumerable<ComicsDTO> GetAllComicsOfAuthor(ComicsAuthorDTO comicsAuthorDTO)
+        //{
+        //    var 
+        //}
     }
 }

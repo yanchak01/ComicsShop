@@ -27,11 +27,11 @@ namespace ComicsShop.Controllers
         }
 
 
-        [HttpPost("cc")]
-       // [Authorize(Roles ="ComicsSeller")]
-        public void CreateComics(ArtistDTO comicsDTO)
+        [HttpPost]
+       [Authorize(Roles ="ComicsSeller")]
+        public void CreateComics(ComicsDTO comicsDTO)
         {
-            
+            _comicsManager.Insert(comicsDTO);
             
         }
 
@@ -39,7 +39,7 @@ namespace ComicsShop.Controllers
         [Authorize(Roles = "ComicsSeller")]
         public void DeleteComics(ComicsDTO comicsDTO)
         {
-            var comics =_comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name).FirstOrDefault();
+            var comics =_comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name && x.Series == comicsDTO.Series).FirstOrDefault();
             _comicsManager.Delete(comics.Id);
         }
 
@@ -50,5 +50,12 @@ namespace ComicsShop.Controllers
             _comicsManager.Update(comicsDTO);
         }
         
+        [HttpGet]
+        public IEnumerable<ComicsDTO> GetAllComics()
+        {
+            return _comicsManager.GetAll();
+        }
+
+
     }
 }

@@ -6,8 +6,8 @@ namespace DAL.DBModels
 {
     public class ComicsAuthorComics
     {
-        public Guid EmployeeId { get; set; }
-        public ComicsAuthor Employee { get; set; }
+        public Guid ComicsAuthorId { get; set; }
+        public ComicsAuthor ComicsAuthor { get; set; }
         public Guid ComicsId { get; set; }
         public Comics Comics { get; set; }
     }
