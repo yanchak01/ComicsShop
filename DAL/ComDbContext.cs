@@ -42,7 +42,7 @@ namespace DAL
 
            
             builder.Entity<TagComics>().HasKey(tg => new { tg.ComicsId, tg.TagId });
-            builder.Entity<ComicsAuthorComics>().HasKey(ec => new { ec.ComicsId, ec.EmployeeId });
+            builder.Entity<ComicsAuthorComics>().HasKey(ec => new { ec.ComicsId, ec.ComicsAuthorId });
                 
         }
     }

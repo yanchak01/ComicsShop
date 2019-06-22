@@ -18,8 +18,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Model.DTOs;
+using NLog.Extensions.Logging;
 using OtherLogic.IRepo;
 
 namespace ComicsShop
@@ -125,8 +127,13 @@ namespace ComicsShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddNLog();
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
