@@ -7,8 +7,8 @@ namespace OtherLogic.IRepo
 {
     public interface IBaseRepository<TEntity> where TEntity:class
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity GetById(Guid id);
+        IEnumerable<TEntity> Get();
+        TEntity Get(Guid id);
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>,

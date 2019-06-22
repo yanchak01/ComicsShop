@@ -15,11 +15,11 @@ namespace ComicsShop.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticateService authenticateService;
+        private readonly IAuthentificationService authenticateService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         public AuthenticationController(
-            IAuthenticateService authenticateService,
+            IAuthentificationService authenticateService,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager
             )
@@ -29,31 +29,10 @@ namespace ComicsShop.Controllers
             this.signInManager = signInManager;
         }
 
-
-        //[AllowAnonymous]
-        //[HttpPost("RequestToken")]
-        //public ActionResult RequestToken([FromBody] TokenRequest request)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    string token;
-        //    if (authenticateService.IsAuthenticated(request, out token))
-        //    {
-        //        return Ok(token);
-        //    }
-
-        //    return BadRequest("Invalid Request");
-
-        //}
-
-
         [AllowAnonymous]
         [HttpPost("GetToken")]
         // [ValidateAntiForgeryToken]
-        public async Task GetToken([FromBody]TokenRequest request)
+        public async Task GetToken(LoginDTO request)
         {
 
             var identity = await authenticateService.GetIdentity(request.UserName, request.Password);
@@ -69,7 +48,7 @@ namespace ComicsShop.Controllers
         [HttpPost("Registration")]
         public async Task Registration(RegistrationDTO model)
         {
-            //ViewData["ReturnUrl"] = returnUrl;
+            
             if (ModelState.IsValid)
             {
                 var role = model.Role == null ? model.Role = RolesEnum.User.ToString() : model.Role;

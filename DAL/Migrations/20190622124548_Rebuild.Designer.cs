@@ -3,15 +3,17 @@ using System;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ComicsShop.DAL.Migrations
 {
     [DbContext(typeof(ComicsDbContext))]
-    partial class ComDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190622124548_Rebuild")]
+    partial class Rebuild
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +88,7 @@ namespace ComicsShop.DAL.Migrations
 
                     b.Property<int>("PageCount");
 
-                    b.Property<double>("Price");
+                    b.Property<int>("Price");
 
                     b.Property<string>("Series");
 
@@ -265,12 +267,12 @@ namespace ComicsShop.DAL.Migrations
             modelBuilder.Entity("DAL.DBModels.ComicsAuthorComics", b =>
                 {
                     b.HasOne("DAL.DBModels.ComicsAuthor", "ComicsAuthor")
-                        .WithMany("Authors")
+                        .WithMany("EmployeeComics")
                         .HasForeignKey("ComicsAuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("Authors")
+                        .WithMany("ComicsAuthors")
                         .HasForeignKey("ComicsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -283,7 +285,7 @@ namespace ComicsShop.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DAL.DBModels.Tag", "Tag")
-                        .WithMany("Tags")
+                        .WithMany("TagComicses")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

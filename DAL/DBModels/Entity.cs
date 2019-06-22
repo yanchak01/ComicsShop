@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DAL.MainModels
+namespace ComicsShop.DAL.DBModels
 {
     public class Entity
     {

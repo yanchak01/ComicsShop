@@ -9,8 +9,8 @@ namespace ComicsShop.Web.Controllers
     [ApiController]
     public class ComicAuthorController
     {
-        private readonly IComicsAuthorManager<ComicsAuthorDTO> _comicsAuthorManager;
-        public ComicAuthorController(IComicsAuthorManager<ComicsAuthorDTO> comicsAuthorManager)
+        private readonly IComicsAuthorManager _comicsAuthorManager;
+        public ComicAuthorController(IComicsAuthorManager comicsAuthorManager)
         {
             _comicsAuthorManager = comicsAuthorManager;
         }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DAL.Migrations
+namespace ComicsShop.DAL.Migrations
 {
-    public partial class RebuildProject2 : Migration
+    public partial class Rebuild3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

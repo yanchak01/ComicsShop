@@ -1,4 +1,4 @@
-﻿using DAL.MainModels;
+﻿using ComicsShop.DAL.DBModels;
 using System.Collections.Generic;
 
 namespace DAL.DBModels
@@ -7,7 +7,7 @@ namespace DAL.DBModels
     {
         public string Name { get; set; }
         public Positions Position { get; set; }
-        public ICollection<ComicsAuthorComics> EmployeeComics { get; set; }
+        public ICollection<ComicsAuthorComics> Authors { get; set; }
 
     }
 }

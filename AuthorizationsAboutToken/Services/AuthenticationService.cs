@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace AuthorizationsAboutToken.Services
 {
-    public class AuthenticateService : IAuthenticateService
+    public class AuthentificationService : IAuthentificationService
     {
         private readonly IUserManagementService userManagementService;
         private readonly TokenManagemant tokenManagement;
@@ -24,7 +24,7 @@ namespace AuthorizationsAboutToken.Services
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-        public AuthenticateService(IUserManagementService userManagementService, 
+        public AuthentificationService(IUserManagementService userManagementService, 
             IOptions<TokenManagemant> tokenManagement, 
             IMapper mapper,
             UserManager<ApplicationUser> userManager,
@@ -35,34 +35,6 @@ namespace AuthorizationsAboutToken.Services
             this.mapper = mapper;
             this.signInManager = signInManager;
             this.userManager = userManager;
-        }
-        public bool IsAuthenticated(TokenRequest request, out string token)
-        {
-            token = string.Empty;
-
-            var user = mapper.Map<TokenRequest, LoginDTO>(request);
-
-            if (!userManagementService.IsValidUser(user)) { return false; }
-            else
-            {
-                var claim = new[]
-               {
-                new Claim(ClaimTypes.Name, request.UserName)
-            };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenManagement.Secret));
-                var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var jwtToken = new JwtSecurityToken(
-                    tokenManagement.Issuer,
-                    tokenManagement.Audience,
-                    claim,
-                    expires: DateTime.Now.AddMinutes(tokenManagement.AccessExpiration),
-                    signingCredentials: credentials
-                );
-                token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-                return true;
-            }
         }
 
         public string GenerateToken(ClaimsIdentity identity)

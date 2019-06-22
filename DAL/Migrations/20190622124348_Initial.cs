@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace DAL.Migrations
+namespace ComicsShop.DAL.Migrations
 {
-    public partial class RebuildProject : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,21 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ComicsAuthors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Position = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComicsAuthors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comicses",
                 columns: table => new
                 {
@@ -55,29 +70,15 @@ namespace DAL.Migrations
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    NumbersOfPages = table.Column<int>(nullable: false),
+                    PageCount = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Seria = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false)
+                    Series = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    ComicsType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comicses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Position = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,22 +205,22 @@ namespace DAL.Migrations
                 name: "EmployeeComics",
                 columns: table => new
                 {
-                    EmployeeId = table.Column<Guid>(nullable: false),
+                    ComicsAuthorId = table.Column<Guid>(nullable: false),
                     ComicsId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeComics", x => new { x.ComicsId, x.EmployeeId });
+                    table.PrimaryKey("PK_EmployeeComics", x => new { x.ComicsId, x.ComicsAuthorId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeComics_ComicsAuthors_ComicsAuthorId",
+                        column: x => x.ComicsAuthorId,
+                        principalTable: "ComicsAuthors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EmployeeComics_Comicses_ComicsId",
                         column: x => x.ComicsId,
                         principalTable: "Comicses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeComics_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -286,9 +287,9 @@ namespace DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeComics_EmployeeId",
+                name: "IX_EmployeeComics_ComicsAuthorId",
                 table: "EmployeeComics",
-                column: "EmployeeId");
+                column: "ComicsAuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TagComics_TagId",
@@ -326,7 +327,7 @@ namespace DAL.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "ComicsAuthors");
 
             migrationBuilder.DropTable(
                 name: "Comicses");

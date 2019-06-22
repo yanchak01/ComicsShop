@@ -22,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using ComicsShop.BLL.Interfaces;
 using OtherLogic.IRepo;
+using ComicsShop.BLL;
 
 namespace ComicsShop
 {
@@ -68,18 +69,18 @@ namespace ComicsShop
             };
 
             services.AddScoped<IUserManagementService, UserManagementService>();
-            services.AddScoped<IAuthenticateService, AuthenticateService>();
+            services.AddScoped<IAuthentificationService, AuthentificationService>();
             #endregion 
 
             #region NpgSQL connection
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<ComDbContext>(options =>
+            services.AddDbContext<ComicsDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 //.AddDefaultUI()
-                .AddEntityFrameworkStores<ComDbContext>()
+                .AddEntityFrameworkStores<ComicsDbContext>()
                 .AddDefaultTokenProviders();
             #endregion
 
@@ -102,7 +103,7 @@ namespace ComicsShop
             #endregion
 
             services.AddScoped<IComicsManager, ComicsManager>();
-            services.AddScoped<IComicsAuthorManager<ComicsAuthor>, ComicsAuthorManager<ComicsAuthor>>();
+            services.AddScoped<IComicsAuthorManager, ComicsAuthorManager>();
             //services.AddScoped<IComicsAuthorManager<ArtistDTO>, ComicsAuthorManager<ArtistDTO>>();
 
             services.Configure<IdentityOptions>(options =>
@@ -145,36 +146,31 @@ namespace ComicsShop
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            //app.UseMvc();
 
         }
 
-
-        public static class MyIdentityDataInitializer
+       public static IWebHost HostRun(string[] args)
         {
-            public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
-            {
-                SeedRoles(roleManager);
-                
-            }
+            var host = Program.BuildWebHost(args);
 
-            public static void SeedRoles(RoleManager<IdentityRole> roleManager)
+            using (var scope = host.Services.CreateScope())
             {
-                string[] Roles = { RolesEnum.Admin.ToString(), RolesEnum.ComicsSeller.ToString(), RolesEnum.User.ToString() };
-                foreach (var role in Roles)
+                var serviceProvider = scope.ServiceProvider;
+                try
                 {
-                    if (!roleManager.RoleExistsAsync(role).Result)
-                    {
-                        IdentityRole role1 = new IdentityRole();
-                        role1.Name = role;
-                        IdentityResult roleResult = roleManager.
-                        CreateAsync(role1).Result;
-                    }
-                }
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-                
+                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                    SeedData.Seed(userManager, roleManager);
+                }
+                catch
+                {
+
+                }
             }
-           
+            return host;
         }
     }
     

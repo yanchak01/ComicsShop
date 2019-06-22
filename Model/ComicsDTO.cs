@@ -13,10 +13,10 @@ namespace ComicsShop.DTO
        
         public string Series { get; set; }
         
-        public int Price { get; set; }
+        public double Price { get; set; }
      
         public ComicsType ComicsType { get; set; }
 
-        public ICollection<ComicsAuthorDTO> ComicsAuthors { get; set; }
+        public ICollection<ComicsAuthorDTO> Authors { get; set; }
     }
 }

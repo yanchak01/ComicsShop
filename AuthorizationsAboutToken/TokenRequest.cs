@@ -7,12 +7,12 @@ namespace AuthorizationsAboutToken
     {
 
 
-        [Required]
+        
         [JsonProperty("username")]
         public string UserName { get; set; }
 
 
-        [Required]
+       
         [JsonProperty("password")]
         public string Password { get; set; }
     }

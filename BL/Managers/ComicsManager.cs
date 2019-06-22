@@ -19,20 +19,20 @@ namespace BLL.Managers
         }
         public void Delete(Guid id)
         {
-            Comics com = baseRepository.GetById(id);
+            Comics com = baseRepository.Get(id);
             baseRepository.Delete(com);
             baseRepository.Save();
         }
 
         public IEnumerable<ComicsDTO> GetAll()
         {
-           var comics = baseRepository.GetAll();
+           var comics = baseRepository.Get();
             return mapper.Map<IEnumerable<Comics>, IEnumerable<ComicsDTO>>(comics);
         }
 
         public ComicsDTO GetById(Guid id)
         {
-            var com = baseRepository.GetById(id);
+            var com = baseRepository.Get(id);
             return mapper.Map<Comics, ComicsDTO>(com);
         }
 

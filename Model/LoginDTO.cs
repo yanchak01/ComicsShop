@@ -1,15 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
 
 namespace ComicsShop.DTO
 {
     public class LoginDTO
     {
-        [Required]
-        [EmailAddress]
+        [JsonProperty("username")]
         public string UserName { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
+        [JsonProperty("password")]
         public string Password { get; set; }
     }
 }

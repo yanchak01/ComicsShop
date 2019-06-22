@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ComicsShop.DTO;
+using System;
 
 namespace ComicsShop.BLL.Interfaces
 {
-    public interface IComicsAuthorManager<TEntity> where TEntity : class
+    public interface IComicsAuthorManager
     {
-        void Insert(TEntity entity);
-        void Update(TEntity entity);
+        void Insert(ComicsAuthorDTO entity);
+        void Update(ComicsAuthorDTO entity);
         void Delete(Guid Id);
     }
  

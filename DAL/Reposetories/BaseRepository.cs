@@ -9,10 +9,10 @@ namespace DAL.Reposetories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity:class
     {
-        protected readonly ComDbContext context;
+        protected readonly ComicsDbContext context;
 
         private DbSet<TEntity> dbSet;
-        public BaseRepository(ComDbContext context)
+        public BaseRepository(ComicsDbContext context)
         {
             this.context = context;
             dbSet = context.Set<TEntity>();
@@ -48,12 +48,12 @@ namespace DAL.Reposetories
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> Get()
         {
             return dbSet.ToList();
         }
 
-        public TEntity GetById(Guid id)
+        public TEntity Get(Guid id)
         {
             return dbSet.Find(id);
         }

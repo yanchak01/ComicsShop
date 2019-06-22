@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-    public class ComDbContext: IdentityDbContext<ApplicationUser>
+    public class ComicsDbContext: IdentityDbContext<ApplicationUser>
     {
-        public ComDbContext(DbContextOptions<ComDbContext> options):base(options)
+        public ComicsDbContext(DbContextOptions<ComicsDbContext> options):base(options)
         {
             Database.Migrate();
         }
 
         #region MainTables
         DbSet<Comics> Comicses { get; set; }
-        DbSet<ComicsAuthor> Employees { get; set; }
+        DbSet<ComicsAuthor> ComicsAuthors { get; set; }
         DbSet<Tag> Tags { get; set; }
-        DbSet<ComicsAuthorComics> EmployeeComics { get; set; }
+        DbSet<ComicsAuthorComics> CComicsAuthorComics { get; set; }
         DbSet<TagComics> TagComics { get; set; }
         #endregion
 
@@ -32,7 +32,7 @@ namespace DAL
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Comics>()
-                .HasMany(ec => ec.ComicsAuthors)
+                .HasMany(ec => ec.Authors)
                 .WithOne(ec => ec.Comics)
                 .HasForeignKey(ec => ec.ComicsId)
                 .OnDelete(DeleteBehavior.Cascade);
