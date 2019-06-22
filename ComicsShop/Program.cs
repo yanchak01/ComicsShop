@@ -10,8 +10,8 @@ namespace ComicsShop
     public class Program
     {
         public static void Main(string[] args)
-        { 
-            Startup.HostRun(args).Run();
+        {
+            BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

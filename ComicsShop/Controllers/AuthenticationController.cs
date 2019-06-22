@@ -1,12 +1,12 @@
-﻿using AuthorizationsAboutToken.Interfaces;
-using DAL.DBModels;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ComicsShop.DTO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using AuthorizationsAboutToken.Interfaces;
+using DAL.DBModels;
 
 namespace ComicsShop.Controllers
 {
