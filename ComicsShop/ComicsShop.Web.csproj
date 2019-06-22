@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuthorizationsAboutToken\AuthorizationsAboutToken.csproj" />
-    <ProjectReference Include="..\BL\BLL.csproj" />
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\BL\ComicsShop.BLL.csproj" />
+    <ProjectReference Include="..\ComicsShop.BLL.Interfaces\ComicsShop.BLL.Interfaces.csproj" />
+    <ProjectReference Include="..\Model\ComicsShop.DTO.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
 ﻿using DAL.DBModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL
 {
@@ -29,13 +26,13 @@ namespace DAL
 
 
             builder.Entity<Comics>()
-                .HasMany(tc => tc.TagComicses)
+                .HasMany(tc => tc.Tags)
                 .WithOne(tc => tc.Comics)
                 .HasForeignKey(tc => tc.ComicsId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Comics>()
-                .HasMany(ec => ec.EmployeeComicses)
+                .HasMany(ec => ec.ComicsAuthors)
                 .WithOne(ec => ec.Comics)
                 .HasForeignKey(ec => ec.ComicsId)
                 .OnDelete(DeleteBehavior.Cascade);

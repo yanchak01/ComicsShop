@@ -1,10 +1,8 @@
-﻿using System;
+﻿using ComicsShop.DTO;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using DAL.DBModels;
-using Model.DTOs;
 
-namespace BLL.ManageInterfaces
+namespace ComicsShop.BLL.Interfaces
 {
     public interface IComicsManager
     {
@@ -13,6 +11,6 @@ namespace BLL.ManageInterfaces
         void Delete(Guid id);
         IEnumerable<ComicsDTO> GetAll();
         ComicsDTO GetById(Guid id);
-        
+
     }
 }

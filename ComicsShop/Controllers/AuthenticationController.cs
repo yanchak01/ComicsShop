@@ -5,11 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Model.DTOs;
+using ComicsShop.DTO;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComicsShop.Controllers
@@ -33,24 +30,24 @@ namespace ComicsShop.Controllers
         }
 
 
-        [AllowAnonymous]
-        [HttpPost("RequestToken")]
-        public ActionResult RequestToken([FromBody] TokenRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[AllowAnonymous]
+        //[HttpPost("RequestToken")]
+        //public ActionResult RequestToken([FromBody] TokenRequest request)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            string token;
-            if (authenticateService.IsAuthenticated(request, out token))
-            {
-                return Ok(token);
-            }
+        //    string token;
+        //    if (authenticateService.IsAuthenticated(request, out token))
+        //    {
+        //        return Ok(token);
+        //    }
 
-            return BadRequest("Invalid Request");
+        //    return BadRequest("Invalid Request");
 
-        }
+        //}
 
 
         [AllowAnonymous]
@@ -63,7 +60,7 @@ namespace ComicsShop.Controllers
 
             var token = authenticateService.GenerateToken(identity);
 
-            await Response.WriteAsync(JsonConvert.SerializeObject("Token : " + token,
+            await Response.WriteAsync(JsonConvert.SerializeObject(token,
                 new JsonSerializerSettings { Formatting = Formatting.Indented }
             ));
         }

@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\OtherLogic\OtherLogic.csproj" />
+    <ProjectReference Include="..\ComicsShop.Common\ComicsShop.Common.csproj" />
+    <ProjectReference Include="..\OtherLogic\ComicsShop.DAL.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

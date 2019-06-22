@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-using BLL.ManageInterfaces;
-using DAL.DBModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.DTOs;
-using System;
+using ComicsShop.DTO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using ComicsShop.BLL.Interfaces;
 
-namespace ComicsShop.Controllers
+namespace ComicsShop.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

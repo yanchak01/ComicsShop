@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
-namespace Model.MainModelsDTO
+namespace ComicsShop.DTO
 {
-   public class EntityDTO
+    public class EntityDTO
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

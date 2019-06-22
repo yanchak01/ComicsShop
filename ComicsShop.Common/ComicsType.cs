@@ -1,4 +1,4 @@
-﻿public enum TypesComicsEnum
+﻿public enum ComicsType
 {
     Ongoing,
     Novel,

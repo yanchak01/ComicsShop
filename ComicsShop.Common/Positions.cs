@@ -1,9 +1,7 @@
-﻿
- public enum PositionsEnum
+﻿public enum Positions
 {
     Artist,
     Writer,
     Illustrator,
     Typographer
 }
-

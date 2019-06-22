@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using BLL.ManageInterfaces;
-using BLL.Services;
-using DAL.DBModels;
-using Model.DTOs;
+using ComicsShop.DTO;
 using OtherLogic.IRepo;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using ComicsShop.BLL.Interfaces;
+using DAL.DBModels;
 
 namespace BLL.Managers
 {

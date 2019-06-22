@@ -1,5 +1,4 @@
-﻿using Model.MainModelsDTO;
-namespace Model.DTOs
+﻿namespace ComicsShop.DTO
 {
     public class IllustratorDTO:ComicsAuthorDTO
     {

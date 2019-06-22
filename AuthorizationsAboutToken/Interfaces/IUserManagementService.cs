@@ -1,7 +1,4 @@
-﻿using Model.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ComicsShop.DTO;
 
 namespace AuthorizationsAboutToken.Interfaces
 {

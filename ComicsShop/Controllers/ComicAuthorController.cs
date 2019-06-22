@@ -1,11 +1,9 @@
-﻿using BLL.ManageInterfaces;
-using Microsoft.AspNetCore.Mvc;
-using Model.DTOs;
-using Model.MainModelsDTO;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using ComicsShop.BLL.Interfaces;
+using ComicsShop.DTO;
 
-namespace ComicsShop.Controllers
+namespace ComicsShop.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -34,10 +32,6 @@ namespace ComicsShop.Controllers
             _comicsAuthorManager.Delete(Id);
         }
 
-        //[HttpGet]
-        //public IEnumerable<ComicsDTO> GetAllComicsOfAuthor(ComicsAuthorDTO comicsAuthorDTO)
-        //{
-        //    var 
-        //}
+        
     }
 }

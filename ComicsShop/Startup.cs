@@ -4,7 +4,6 @@ using AuthorizationsAboutToken.Interfaces;
 using AuthorizationsAboutToken.Models;
 using AuthorizationsAboutToken.Services;
 using AutoMapper;
-using BLL.ManageInterfaces;
 using BLL.Managers;
 using BLL.Services;
 using DAL;
@@ -20,8 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Model.DTOs;
 using NLog.Extensions.Logging;
+using ComicsShop.BLL.Interfaces;
 using OtherLogic.IRepo;
 
 namespace ComicsShop
@@ -98,13 +97,13 @@ namespace ComicsShop
             services.AddScoped<IBaseRepository<ApplicationUser>, BaseRepository<ApplicationUser>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             services.AddScoped<IBaseRepository<ComicsAuthor>,BaseRepository<ComicsAuthor>>();
-            services.AddScoped<IBaseRepository<ArtistDTO>, BaseRepository<ArtistDTO>>();
+            //services.AddScoped<IBaseRepository<ArtistDTO>, BaseRepository<ArtistDTO>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
             #endregion
 
             services.AddScoped<IComicsManager, ComicsManager>();
             services.AddScoped<IComicsAuthorManager<ComicsAuthor>, ComicsAuthorManager<ComicsAuthor>>();
-            services.AddScoped<IComicsAuthorManager<ArtistDTO>, ComicsAuthorManager<ArtistDTO>>();
+            //services.AddScoped<IComicsAuthorManager<ArtistDTO>, ComicsAuthorManager<ArtistDTO>>();
 
             services.Configure<IdentityOptions>(options =>
             {
