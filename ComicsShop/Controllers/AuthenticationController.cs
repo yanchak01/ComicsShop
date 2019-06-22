@@ -1,5 +1,4 @@
-﻿using AuthorizationsAboutToken;
-using AuthorizationsAboutToken.Interfaces;
+﻿using AuthorizationsAboutToken.Interfaces;
 using DAL.DBModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

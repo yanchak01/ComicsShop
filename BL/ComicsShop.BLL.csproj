@@ -18,5 +18,6 @@
     <ProjectReference Include="..\AuthorizationsAboutToken\ComicsShop.Security.csproj" />
     <ProjectReference Include="..\ComicsShop.BLL.Interfaces\ComicsShop.BLL.Interfaces.csproj" />
     <ProjectReference Include="..\DAL\ComicsShop.DAL.csproj" />
+    <ProjectReference Include="..\OtherLogic\ComicsShop.DAL.Interfaces.csproj" />
   </ItemGroup>
 </Project>
