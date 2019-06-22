@@ -73,7 +73,7 @@ namespace ComicsShop.DAL.Migrations
                     PageCount = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Series = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     ComicsType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -202,7 +202,7 @@ namespace ComicsShop.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeComics",
+                name: "CComicsAuthorComics",
                 columns: table => new
                 {
                     ComicsAuthorId = table.Column<Guid>(nullable: false),
@@ -210,15 +210,15 @@ namespace ComicsShop.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeComics", x => new { x.ComicsId, x.ComicsAuthorId });
+                    table.PrimaryKey("PK_CComicsAuthorComics", x => new { x.ComicsId, x.ComicsAuthorId });
                     table.ForeignKey(
-                        name: "FK_EmployeeComics_ComicsAuthors_ComicsAuthorId",
+                        name: "FK_CComicsAuthorComics_ComicsAuthors_ComicsAuthorId",
                         column: x => x.ComicsAuthorId,
                         principalTable: "ComicsAuthors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeComics_Comicses_ComicsId",
+                        name: "FK_CComicsAuthorComics_Comicses_ComicsId",
                         column: x => x.ComicsId,
                         principalTable: "Comicses",
                         principalColumn: "Id",
@@ -287,8 +287,8 @@ namespace ComicsShop.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeComics_ComicsAuthorId",
-                table: "EmployeeComics",
+                name: "IX_CComicsAuthorComics_ComicsAuthorId",
+                table: "CComicsAuthorComics",
                 column: "ComicsAuthorId");
 
             migrationBuilder.CreateIndex(
@@ -315,7 +315,7 @@ namespace ComicsShop.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EmployeeComics");
+                name: "CComicsAuthorComics");
 
             migrationBuilder.DropTable(
                 name: "TagComics");

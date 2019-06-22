@@ -3,17 +3,15 @@ using System;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ComicsShop.DAL.Migrations
 {
     [DbContext(typeof(ComicsDbContext))]
-    [Migration("20190622124348_Initial")]
-    partial class Initial
+    partial class ComicsDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,7 +86,7 @@ namespace ComicsShop.DAL.Migrations
 
                     b.Property<int>("PageCount");
 
-                    b.Property<int>("Price");
+                    b.Property<double>("Price");
 
                     b.Property<string>("Series");
 
@@ -125,7 +123,7 @@ namespace ComicsShop.DAL.Migrations
 
                     b.HasIndex("ComicsAuthorId");
 
-                    b.ToTable("EmployeeComics");
+                    b.ToTable("CComicsAuthorComics");
                 });
 
             modelBuilder.Entity("DAL.DBModels.Tag", b =>
@@ -267,12 +265,12 @@ namespace ComicsShop.DAL.Migrations
             modelBuilder.Entity("DAL.DBModels.ComicsAuthorComics", b =>
                 {
                     b.HasOne("DAL.DBModels.ComicsAuthor", "ComicsAuthor")
-                        .WithMany("EmployeeComics")
+                        .WithMany("Authors")
                         .HasForeignKey("ComicsAuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DAL.DBModels.Comics", "Comics")
-                        .WithMany("ComicsAuthors")
+                        .WithMany("Authors")
                         .HasForeignKey("ComicsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -285,7 +283,7 @@ namespace ComicsShop.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DAL.DBModels.Tag", "Tag")
-                        .WithMany("TagComicses")
+                        .WithMany("Tags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

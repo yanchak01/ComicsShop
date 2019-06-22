@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ComicsShop.DAL.Migrations
 {
     [DbContext(typeof(ComicsDbContext))]
-    [Migration("20190622134145_Rebuild3")]
-    partial class Rebuild3
+    [Migration("20190622211742_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
