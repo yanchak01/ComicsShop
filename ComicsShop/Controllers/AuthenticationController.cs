@@ -31,7 +31,6 @@ namespace ComicsShop.Controllers
 
         [AllowAnonymous]
         [HttpPost("GetToken")]
-        // [ValidateAntiForgeryToken]
         public async Task GetToken(LoginDTO request)
         {
 
@@ -39,7 +38,7 @@ namespace ComicsShop.Controllers
 
             var token = authenticateService.GenerateToken(identity);
 
-            await Response.WriteAsync(JsonConvert.SerializeObject(token,
+             await Response.WriteAsync(JsonConvert.SerializeObject(token,
                 new JsonSerializerSettings { Formatting = Formatting.Indented }
             ));
         }

@@ -5,6 +5,7 @@ using DAL.DBModels;
 using OtherLogic.IRepo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Managers
 {
@@ -17,9 +18,10 @@ namespace BLL.Managers
             _baseRepository = baseRepository;
             _mapper = mapper;
         }
-        public void Delete(Guid Id)
+        public void Delete(ComicsAuthorDTO comicsAuthorDTO)
         {
-            ComicsAuthor entity = _baseRepository.Get(Id);
+            var id = comicsAuthorDTO.Id;
+            ComicsAuthor entity = _baseRepository.Get(id);
             _baseRepository.Delete(entity);
             _baseRepository.Save();
         }
@@ -27,6 +29,8 @@ namespace BLL.Managers
         public void Insert(ComicsAuthorDTO entity)
         {
            var EMP = _mapper.Map<ComicsAuthorDTO, ComicsAuthor>(entity);
+            EMP.DateCreated = DateTime.Now;
+            EMP.DateModified = DateTime.Now;
             _baseRepository.Insert(EMP);
             _baseRepository.Save();
         }
@@ -34,15 +38,22 @@ namespace BLL.Managers
         public void Update(ComicsAuthorDTO entity)
         {
             var emp = _mapper.Map<ComicsAuthorDTO, ComicsAuthor>(entity);
+            emp.DateModified = DateTime.Now;
             _baseRepository.Update(emp);
             _baseRepository.Save();
         }
 
-        public IEnumerable<ComicsAuthor> GetAll()
+        public IEnumerable<ComicsAuthorDTO> Get()
         {
-            return _baseRepository.Get();
+            var comicsAuthors = _baseRepository.Get();
+            return _mapper.Map<IEnumerable<ComicsAuthor>, IEnumerable<ComicsAuthorDTO>>(comicsAuthors);
         }
 
-
+        public ComicsAuthorDTO Get(ComicsAuthorDTO entity)
+        {
+            var Id = entity.Id;
+            var comicsAuthor = _baseRepository.Get(x => x.Id == Id).FirstOrDefault();
+            return _mapper.Map<ComicsAuthor, ComicsAuthorDTO>(comicsAuthor);
+        }
     }
 }

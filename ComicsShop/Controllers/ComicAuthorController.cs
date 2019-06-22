@@ -24,14 +24,14 @@ namespace ComicsShop.Web.Controllers
         [HttpPut]
         public void UpdateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
-            _comicsAuthorManager.Update(comicsAuthorDTO);
+             _comicsAuthorManager.Update(comicsAuthorDTO);
         }
         [HttpDelete]
-        public void DeleteComicsAuthor(Guid Id)
+        public void DeleteComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
-            _comicsAuthorManager.Delete(Id);
+            _comicsAuthorManager.Delete(comicsAuthorDTO);
         }
 
-        
+       
     }
 }
