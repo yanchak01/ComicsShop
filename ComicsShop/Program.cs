@@ -1,24 +1,44 @@
-﻿using ComicsShop.DAL;
-using ComicsShop.Web;
-using DAL.DBModels;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using Serilog.Sinks;
+using System;
 
 namespace ComicsShop
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
+           
+            var Logger = new LoggerConfiguration()
+                .WriteTo.File(@"Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .MinimumLevel.Debug()
+                .CreateLogger();
+
             var Host = BuildWebHost(args);
-            Startup.WebHostRun(Host,args).Run();
+
+            Log.Logger = Logger;
+
+            try
+            {
+                Startup.WebHostRun(Host, args).Run();
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+                
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>().Build();
+                .UseStartup<Startup>().UseSerilog().Build();
 
 
     }

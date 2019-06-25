@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsShop.DAL.Interfaces",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsShop.Security", "AuthorizationsAboutToken\ComicsShop.Security.csproj", "{DA8D19D1-CF69-46D2-8129-D66558802389}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicsShop.BLL.Interfaces", "ComicsShop.BLL.Interfaces\ComicsShop.BLL.Interfaces.csproj", "{84F3BAFE-7FD2-49E6-A2F8-9B1A7E4850A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsShop.BLL.Interfaces", "ComicsShop.BLL.Interfaces\ComicsShop.BLL.Interfaces.csproj", "{84F3BAFE-7FD2-49E6-A2F8-9B1A7E4850A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicsShop.Common", "ComicsShop.Common\ComicsShop.Common.csproj", "{D315674B-FD86-4F4F-A8C6-A42339A6A42E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsShop.Common", "ComicsShop.Common\ComicsShop.Common.csproj", "{D315674B-FD86-4F4F-A8C6-A42339A6A42E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

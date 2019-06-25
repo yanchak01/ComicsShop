@@ -5,6 +5,8 @@ using ComicsShop.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using ComicsShop.BLL.Interfaces;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace ComicsShop.Web.Controllers
 {
@@ -14,22 +16,22 @@ namespace ComicsShop.Web.Controllers
     {
         private readonly IComicsManager _comicsManager;
         private readonly IMapper _mapper;
-      
+        private readonly ILogger<ComicsController> _loger;
         
-        public ComicsController(IComicsManager comicsManager, IMapper mapper)
+        public ComicsController(IComicsManager comicsManager, IMapper mapper,ILogger<ComicsController>logger)
         {
             _comicsManager = comicsManager;
             _mapper = mapper;
-           
+            _loger = logger;
         }
 
 
         [HttpPost]
-       [Authorize(Roles ="ComicsSeller")]
+       //[Authorize(Roles ="ComicsSeller")]
         public void CreateComics(ComicsDTO comicsDTO)
         {
             _comicsManager.Insert(comicsDTO);
-            
+            _loger.LogDebug("Create comics");
         }
 
         [HttpDelete]
