@@ -12,10 +12,14 @@ namespace ComicsShop
     {
         public static void Main(string[] args)
         {
-            Startup.BuildWebHost(args).Run();
+            var Host = BuildWebHost(args);
+            Startup.WebHostRun(Host,args).Run();
         }
 
-        
-                
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>().Build();
+
+
     }
 }

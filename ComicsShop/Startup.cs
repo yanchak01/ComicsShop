@@ -19,10 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using NLog.Extensions.Logging;
 using ComicsShop.BLL.Interfaces;
 using OtherLogic.IRepo;
-using ComicsShop.BLL;
 using Microsoft.AspNetCore;
 using ComicsShop.DAL;
 
@@ -154,9 +152,9 @@ namespace ComicsShop
 
         }
          
-       public static void WebHostRun(string[] args)
+       public static IWebHost WebHostRun(IWebHost hosting,string[] args)
         {
-            var host = BuildWebHost(args);
+            var host = hosting;
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
@@ -174,10 +172,9 @@ namespace ComicsShop
                 }
             }
             //host.Run();
+            return host;
         }
-        public static IWebHost BuildWebHost(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-               .UseStartup<Startup>().Build();
+       
     }
     
 }
