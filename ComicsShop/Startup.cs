@@ -79,7 +79,7 @@ namespace ComicsShop
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddDefaultUI()
+                //.AddDefaultUI()
                 .AddEntityFrameworkStores<ComicsDbContext>()
                 .AddDefaultTokenProviders();
             #endregion

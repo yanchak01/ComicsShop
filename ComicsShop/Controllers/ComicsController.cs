@@ -53,7 +53,7 @@ namespace ComicsShop.Web.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "ComicsSeller")]
+        //[Authorize(Roles = "ComicsSeller")]
         public void UpdateComics(ComicsDTO comicsDTO)
         {
             _comicsManager.Update(comicsDTO);

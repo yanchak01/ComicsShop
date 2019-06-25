@@ -48,7 +48,7 @@ namespace BLL.Managers
         public void Update(ComicsDTO comicsDTO)
         {
             Comics comics = mapper.Map<ComicsDTO, Comics>(comicsDTO);
-            baseRepository.Insert(comics);
+            baseRepository.Update(comics);
             baseRepository.Save();
         }
     }
