@@ -23,6 +23,8 @@ using NLog.Extensions.Logging;
 using ComicsShop.BLL.Interfaces;
 using OtherLogic.IRepo;
 using ComicsShop.BLL;
+using Microsoft.AspNetCore;
+using ComicsShop.DAL;
 
 namespace ComicsShop
 {
@@ -79,7 +81,7 @@ namespace ComicsShop
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                //.AddDefaultUI()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ComicsDbContext>()
                 .AddDefaultTokenProviders();
             #endregion
@@ -129,9 +131,9 @@ namespace ComicsShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddNLog();
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
+            //loggerFactory.AddNLog();
+            //loggerFactory.AddConsole();
+            //loggerFactory.AddDebug();
             
 
             if (env.IsDevelopment())
@@ -148,14 +150,13 @@ namespace ComicsShop
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            //app.UseMvc();
+            app.UseMvc();
 
         }
-
-       public static IWebHost HostRun(string[] args)
+         
+       public static void WebHostRun(string[] args)
         {
-            var host = Program.BuildWebHost(args);
-
+            var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
@@ -165,15 +166,18 @@ namespace ComicsShop
 
                     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                    SeedData.Seed(userManager, roleManager);
+                    MyIdentityDataInitializer.SeedData(userManager, roleManager);
                 }
                 catch
                 {
 
                 }
             }
-            return host;
+            //host.Run();
         }
+        public static IWebHost BuildWebHost(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>().Build();
     }
     
 }

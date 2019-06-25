@@ -11,7 +11,7 @@ namespace DAL
             Database.Migrate();
         }
 
-        #region MainTables
+        #region Tables
         DbSet<Comics> Comicses { get; set; }
         DbSet<ComicsAuthor> ComicsAuthors { get; set; }
         DbSet<Tag> Tags { get; set; }

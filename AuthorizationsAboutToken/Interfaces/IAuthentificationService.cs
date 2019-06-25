@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using ComicsShop.DTO;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AuthorizationsAboutToken.Interfaces
@@ -9,6 +10,6 @@ namespace AuthorizationsAboutToken.Interfaces
         Task<ClaimsIdentity> GetIdentity(string userName, string password);
         string GenerateToken(ClaimsIdentity identity);
 
-
+         Task Registration(RegistrationDTO registrationDRO,bool ModelState);
     }
 }

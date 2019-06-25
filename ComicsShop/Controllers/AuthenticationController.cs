@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using AuthorizationsAboutToken.Interfaces;
 using DAL.DBModels;
+using System.Collections.Generic;
 
 namespace ComicsShop.Controllers
 {
@@ -44,32 +45,14 @@ namespace ComicsShop.Controllers
 
         [AllowAnonymous]
         [HttpPost("Registration")]
-        public async Task Registration(RegistrationDTO model)
+        public async Task<ActionResult> Registration(RegistrationDTO model)
         {
-            
-            if (ModelState.IsValid)
-            {
-                var role = model.Role == null ? model.Role = RolesEnum.User.ToString() : model.Role;
-                var user = new ApplicationUser
-                {
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    PhoneNumber = model.Phone,
-                    
 
-                };
-                var result = await userManager.CreateAsync(user, model.Password);
+             await authenticateService.Registration(model, ModelState.IsValid);
 
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, role);
-                }
 
-                
-            }
-             
+            return Ok();
         }
-
-        
+      
     }
 }

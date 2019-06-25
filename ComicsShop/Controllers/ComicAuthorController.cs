@@ -2,6 +2,9 @@
 using System;
 using ComicsShop.BLL.Interfaces;
 using ComicsShop.DTO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ComicsShop.Web.Controllers
 {
@@ -34,7 +37,13 @@ namespace ComicsShop.Web.Controllers
             _comicsAuthorManager.Delete(comicsAuthorDTO);
             return Ok();
         }
-
+        [HttpGet]
+        public ActionResult<IEnumerable<ComicsAuthorDTO>> GetAll()
+        {
+            var b = _comicsAuthorManager.Get();
+            ComicsAuthorDTO[] bbb= _comicsAuthorManager.Get().ToArray();
+            return bbb;
+        }
        
     }
 }

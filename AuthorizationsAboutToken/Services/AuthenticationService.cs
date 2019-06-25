@@ -92,5 +92,31 @@ namespace AuthorizationsAboutToken.Services
             }
             return new ClaimsIdentity();
         }
+
+        public async Task Registration(RegistrationDTO model,bool ModelValid)
+        {
+            if (ModelValid == true)
+            {
+                var role = model.Role == null ? model.Role = RolesEnum.User.ToString() : model.Role;
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    PhoneNumber = model.Phone,
+
+
+                };
+                var result = await userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                     await userManager.AddToRoleAsync(user, role);
+                }
+
+
+            }
+        }
+
+        
     }
 }

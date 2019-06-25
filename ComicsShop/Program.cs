@@ -1,4 +1,5 @@
-﻿using ComicsShop.Web;
+﻿using ComicsShop.DAL;
+using ComicsShop.Web;
 using DAL.DBModels;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -11,13 +12,10 @@ namespace ComicsShop
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            Startup.BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
-
+        
+                
     }
 }
