@@ -510,3 +510,259 @@ FROM "ComicsAuthors" AS c
 2019-06-25 18:25:51.261 +03:00 [DBG] Connection id "0HLNPG5JQU2LO" completed keep alive response.
 2019-06-25 18:25:51.263 +03:00 [DBG] 'ComicsDbContext' disposed.
 2019-06-25 18:25:51.264 +03:00 [INF] Request finished in 644.4643ms 200 application/json; charset=utf-8
+2019-06-25 18:32:32.513 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2019-06-25 18:32:32.837 +03:00 [DBG] The foreign key properties haven't been configured by convention because the best match {'Id' : int} are incompatible with the current principal key {'Id' : string}. This message can be disregarded if explicit configuration has been specified.
+2019-06-25 18:32:32.838 +03:00 [DBG] The foreign key properties haven't been configured by convention because the best match {'Id' : int} are incompatible with the current principal key {'Id' : string}. This message can be disregarded if explicit configuration has been specified.
+2019-06-25 18:32:32.842 +03:00 [DBG] The index {'UserId'} was not created as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2019-06-25 18:32:32.844 +03:00 [DBG] The foreign key properties haven't been configured by convention because the best match {'Id' : int} are incompatible with the current principal key {'Id' : string}. This message can be disregarded if explicit configuration has been specified.
+2019-06-25 18:32:32.845 +03:00 [DBG] The foreign key properties haven't been configured by convention because the best match {'Id' : int} are incompatible with the current principal key {'Id' : string}. This message can be disregarded if explicit configuration has been specified.
+2019-06-25 18:32:32.845 +03:00 [DBG] The index {'UserId'} was not created as the properties are already covered by the index {'UserId', 'RoleId'}.
+2019-06-25 18:32:32.847 +03:00 [DBG] The index {'ComicsId'} was not created as the properties are already covered by the index {'ComicsId', 'TagId'}.
+2019-06-25 18:32:32.848 +03:00 [DBG] The index {'ComicsId'} was not created as the properties are already covered by the index {'ComicsId', 'ComicsAuthorId'}.
+2019-06-25 18:32:33.029 +03:00 [INF] Entity Framework Core 2.1.11-servicing-32099 initialized 'ComicsDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2019-06-25 18:32:33.051 +03:00 [DBG] Migrating using database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.692 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.778 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.784 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:33.811 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:33.811 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.814 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.886 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.886 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.886 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:33.887 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:33.887 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.887 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.889 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.889 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.889 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2019-06-25 18:32:33.928 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2019-06-25 18:32:33.928 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.928 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:33.929 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:33.935 +03:00 [INF] No migrations were applied. The database is already up to date.
+2019-06-25 18:32:33.984 +03:00 [INF] User profile is available. Using 'C:\Users\bleid\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2019-06-25 18:32:34.017 +03:00 [DBG] Compiling query model: 
+'(from IdentityRole r in DbSet<IdentityRole>
+where [r].NormalizedName == __normalizedName_0
+select [r]).FirstOrDefault()'
+2019-06-25 18:32:34.029 +03:00 [DBG] Optimized query model: 
+'(from IdentityRole r in DbSet<IdentityRole>
+where [r].NormalizedName == __normalizedName_0
+select [r]).FirstOrDefault()'
+2019-06-25 18:32:34.071 +03:00 [DBG] (QueryContext queryContext) => IAsyncEnumerable<IdentityRole> _InterceptExceptions(
+    source: IAsyncEnumerable<IdentityRole> _TrackEntities(
+        results: IAsyncEnumerable<IdentityRole> _ToSequence(() => Task<IdentityRole> FirstOrDefault(
+                source: IAsyncEnumerable<IdentityRole> _ShapedQuery(
+                    queryContext: queryContext, 
+                    shaperCommandContext: SelectExpression: 
+                        SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+                        FROM "AspNetRoles" AS r
+                        WHERE r."NormalizedName" = @__normalizedName_0
+                        LIMIT 1, 
+                    shaper: UnbufferedEntityShaper<IdentityRole>), 
+                cancellationToken: queryContext.CancellationToken)), 
+        queryContext: queryContext, 
+        entityTrackingInfos: { itemType: IdentityRole }, 
+        entityAccessors: List<Func<IdentityRole, object>> 
+        { 
+            Func<IdentityRole, IdentityRole>, 
+        }
+    ), 
+    contextType: DAL.ComicsDbContext, 
+    logger: DiagnosticsLogger<Query>, 
+    queryContext: queryContext)
+2019-06-25 18:32:34.097 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.099 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.115 +03:00 [DBG] Executing DbCommand [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.183 +03:00 [INF] Executed DbCommand (70ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.205 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:34.205 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.205 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.208 +03:00 [DBG] Context 'IdentityRole' started tracking 'ComicsDbContext' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2019-06-25 18:32:34.217 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.217 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.219 +03:00 [DBG] Executing DbCommand [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.220 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.221 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:34.221 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.221 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.222 +03:00 [DBG] Context 'IdentityRole' started tracking 'ComicsDbContext' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2019-06-25 18:32:34.222 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.222 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.223 +03:00 [DBG] Executing DbCommand [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.224 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Name", r."NormalizedName"
+FROM "AspNetRoles" AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2019-06-25 18:32:34.225 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:34.225 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.225 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:34.225 +03:00 [DBG] Context 'IdentityRole' started tracking 'ComicsDbContext' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2019-06-25 18:32:34.225 +03:00 [DBG] 'ComicsDbContext' disposed.
+2019-06-25 18:32:34.241 +03:00 [DBG] Hosting starting
+2019-06-25 18:32:34.276 +03:00 [DBG] Reading data from file 'C:\Users\bleid\AppData\Local\ASP.NET\DataProtection-Keys\key-425e4777-5076-49e0-a78e-a23195ab1cbe.xml'.
+2019-06-25 18:32:34.289 +03:00 [DBG] Found key "425e4777-5076-49e0-a78e-a23195ab1cbe".
+2019-06-25 18:32:34.296 +03:00 [DBG] Considering key "425e4777-5076-49e0-a78e-a23195ab1cbe" with expiration date "2019-08-22T15:31:29.8277332+00:00" as default key.
+2019-06-25 18:32:34.308 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2019-06-25 18:32:34.308 +03:00 [DBG] Decrypting secret element using Windows DPAPI.
+2019-06-25 18:32:34.310 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2019-06-25 18:32:34.310 +03:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2019-06-25 18:32:34.312 +03:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2019-06-25 18:32:34.318 +03:00 [DBG] Using key "425e4777-5076-49e0-a78e-a23195ab1cbe" as the default key.
+2019-06-25 18:32:34.318 +03:00 [DBG] Key ring with default key "425e4777-5076-49e0-a78e-a23195ab1cbe" was loaded during application startup.
+2019-06-25 18:32:34.353 +03:00 [DBG] Compatibility switch AllowInputFormatterExceptionMessages in type MvcJsonOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.370 +03:00 [DBG] Compatibility switch AllowCombiningAuthorizeFilters in type MvcOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.371 +03:00 [DBG] Compatibility switch AllowBindingHeaderValuesToNonStringModelTypes in type MvcOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.371 +03:00 [DBG] Compatibility switch AllowValidatingTopLevelNodes in type MvcOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.371 +03:00 [DBG] Compatibility switch InputFormatterExceptionPolicy in type MvcOptions is using compatibility value "MalformedInputExceptions" for version "Version_2_1"
+2019-06-25 18:32:34.371 +03:00 [DBG] Compatibility switch SuppressBindingUndefinedValueToEnumType in type MvcOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.375 +03:00 [DBG] Compatibility switch AllowAreas in type RazorPagesOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.375 +03:00 [DBG] Compatibility switch AllowMappingHeadRequestsToGetHandler in type RazorPagesOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.405 +03:00 [DBG] Compatibility switch SuppressTempDataAttributePrefix in type MvcViewOptions is using compatibility value true for version "Version_2_1"
+2019-06-25 18:32:34.424 +03:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinderProvider"]
+2019-06-25 18:32:34.525 +03:00 [DBG] Failed to locate the development https certificate at 'null'.
+2019-06-25 18:32:34.543 +03:00 [DBG] Hosting started
+2019-06-25 18:32:34.543 +03:00 [DBG] Loaded hosting startup assembly ComicsShop.Web
+2019-06-25 18:32:34.543 +03:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Server.IISIntegration
+2019-06-25 18:32:34.689 +03:00 [DBG] Connection id "0HLNPG9C9ATMA" started.
+2019-06-25 18:32:34.746 +03:00 [DBG] Connection id "0HLNPG9C9ATMB" started.
+2019-06-25 18:32:34.770 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:44367/api/comicauthor  
+2019-06-25 18:32:34.770 +03:00 [INF] Request starting HTTP/1.1 DEBUG http://localhost:44367/  0
+2019-06-25 18:32:34.773 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2019-06-25 18:32:34.773 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2019-06-25 18:32:34.794 +03:00 [DBG] Connection id "0HLNPG9C9ATMB" completed keep alive response.
+2019-06-25 18:32:34.794 +03:00 [INF] Request finished in 24.2477ms 200 
+2019-06-25 18:32:34.808 +03:00 [DBG] AuthenticationScheme: Identity.Application was not authenticated.
+2019-06-25 18:32:34.828 +03:00 [DBG] The request path /api/comicauthor does not match a supported file type
+2019-06-25 18:32:34.953 +03:00 [DBG] Request successfully matched the route with name 'null' and template 'api/ComicAuthor'.
+2019-06-25 18:32:34.961 +03:00 [DBG] Action 'ComicsShop.Web.Controllers.ComicAuthorController.CreateComicsAuthor (ComicsShop.Web)' with id '12f6b41b-7eb3-4fe9-85a4-be0d6427639f' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+2019-06-25 18:32:34.961 +03:00 [DBG] Action 'ComicsShop.Web.Controllers.ComicAuthorController.UpdateComicsAuthor (ComicsShop.Web)' with id 'ddac9716-eae9-4efb-b72e-d298dde2af2b' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+2019-06-25 18:32:34.961 +03:00 [DBG] Action 'ComicsShop.Web.Controllers.ComicAuthorController.DeleteComicsAuthor (ComicsShop.Web)' with id '2ee24ef6-4dfd-48b6-8d57-a940dd821a8e' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+2019-06-25 18:32:34.971 +03:00 [INF] Route matched with {action = "GetAll", controller = "ComicAuthor", page = "", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[ComicsShop.DTO.ComicsAuthorDTO]] GetAll() on controller ComicsShop.Web.Controllers.ComicAuthorController (ComicsShop.Web).
+2019-06-25 18:32:34.972 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2019-06-25 18:32:34.972 +03:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-06-25 18:32:34.972 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter"]
+2019-06-25 18:32:34.972 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2019-06-25 18:32:34.972 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-06-25 18:32:34.977 +03:00 [INF] Entity Framework Core 2.1.11-servicing-32099 initialized 'ComicsDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: None
+2019-06-25 18:32:34.986 +03:00 [DBG] Migrating using database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.100 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.100 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.101 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:35.102 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:35.102 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.102 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.157 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.157 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.157 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:35.158 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2019-06-25 18:32:35.158 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.158 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.158 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.159 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.159 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2019-06-25 18:32:35.159 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2019-06-25 18:32:35.159 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.159 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.159 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:35.159 +03:00 [INF] No migrations were applied. The database is already up to date.
+2019-06-25 18:32:35.234 +03:00 [INF] Executing action method ComicsShop.Web.Controllers.ComicAuthorController.GetAll (ComicsShop.Web) - Validation state: "Valid"
+2019-06-25 18:32:35.237 +03:00 [DBG] Compiling query model: 
+'from ComicsAuthor <generated>_0 in DbSet<ComicsAuthor>
+select [<generated>_0]'
+2019-06-25 18:32:35.237 +03:00 [DBG] Optimized query model: 
+'from ComicsAuthor <generated>_0 in DbSet<ComicsAuthor>
+select [<generated>_0]'
+2019-06-25 18:32:35.242 +03:00 [DBG] (QueryContext queryContext) => IEnumerable<ComicsAuthor> _InterceptExceptions(
+    source: IEnumerable<ComicsAuthor> _TrackEntities(
+        results: IEnumerable<ComicsAuthor> _ShapedQuery(
+            queryContext: queryContext, 
+            shaperCommandContext: SelectExpression: 
+                SELECT c."Id", c."DateCreated", c."DateModified", c."Name", c."Position"
+                FROM "ComicsAuthors" AS c, 
+            shaper: UnbufferedEntityShaper<ComicsAuthor>), 
+        queryContext: queryContext, 
+        entityTrackingInfos: { itemType: ComicsAuthor }, 
+        entityAccessors: List<Func<ComicsAuthor, object>> 
+        { 
+            Func<ComicsAuthor, ComicsAuthor>, 
+        }
+    ), 
+    contextType: DAL.ComicsDbContext, 
+    logger: DiagnosticsLogger<Query>, 
+    queryContext: queryContext)
+2019-06-25 18:32:35.243 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.243 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.243 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."DateCreated", c."DateModified", c."Name", c."Position"
+FROM "ComicsAuthors" AS c
+2019-06-25 18:32:35.261 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."DateCreated", c."DateModified", c."Name", c."Position"
+FROM "ComicsAuthors" AS c
+2019-06-25 18:32:35.265 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:35.266 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.266 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.284 +03:00 [DBG] Opening connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.284 +03:00 [DBG] Opened connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.284 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."DateCreated", c."DateModified", c."Name", c."Position"
+FROM "ComicsAuthors" AS c
+2019-06-25 18:32:35.284 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT c."Id", c."DateCreated", c."DateModified", c."Name", c."Position"
+FROM "ComicsAuthors" AS c
+2019-06-25 18:32:35.284 +03:00 [DBG] A data reader was disposed.
+2019-06-25 18:32:35.284 +03:00 [DBG] Closing connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.285 +03:00 [DBG] Closed connection to database 'ComicsShop' on server 'tcp://localhost:5432'.
+2019-06-25 18:32:35.287 +03:00 [INF] Executed action method ComicsShop.Web.Controllers.ComicAuthorController.GetAll (ComicsShop.Web), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 51.5033ms.
+2019-06-25 18:32:35.292 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"]
+2019-06-25 18:32:35.296 +03:00 [DBG] No information found on request to perform content negotiation.
+2019-06-25 18:32:35.296 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2019-06-25 18:32:35.296 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2019-06-25 18:32:35.297 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter' and content type 'application/json' to write the response.
+2019-06-25 18:32:35.298 +03:00 [INF] Executing ObjectResult, writing value of type 'ComicsShop.DTO.ComicsAuthorDTO[]'.
+2019-06-25 18:32:35.421 +03:00 [INF] Executed action ComicsShop.Web.Controllers.ComicAuthorController.GetAll (ComicsShop.Web) in 446.5899ms
+2019-06-25 18:32:35.422 +03:00 [DBG] Connection id "0HLNPG9C9ATMA" completed keep alive response.
+2019-06-25 18:32:35.425 +03:00 [DBG] 'ComicsDbContext' disposed.
+2019-06-25 18:32:35.425 +03:00 [INF] Request finished in 655.9857ms 200 application/json; charset=utf-8
