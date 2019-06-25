@@ -13,7 +13,7 @@ namespace ComicsShop
         {
            
             var Logger = new LoggerConfiguration()
-                .WriteTo.File(@"Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File(@"Logs/log.log", rollingInterval: RollingInterval.Day)
                 .MinimumLevel.Debug()
                 .CreateLogger();
 
