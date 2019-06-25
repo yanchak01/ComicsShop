@@ -7,6 +7,7 @@ using System.Linq;
 using ComicsShop.BLL.Interfaces;
 using Serilog;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace ComicsShop.Web.Controllers
 {
@@ -30,8 +31,17 @@ namespace ComicsShop.Web.Controllers
        //[Authorize(Roles ="ComicsSeller")]
         public void CreateComics(ComicsDTO comicsDTO)
         {
-            _comicsManager.Insert(comicsDTO);
-            _loger.LogDebug("Create comics");
+            try
+            {
+                 throw new Exception("lo lo lo lo lo lo lolomjghfcngmjgfhngfhmgjfthfn vnjmfdrgbfghfmtdhnf bvcn gmftj g4y47647777777777777777777777777777777");
+                
+                //_comicsManager.Insert(comicsDTO);
+                
+            }
+            catch(Exception ex)
+            {
+                _loger.LogError(ex.Message);
+            }
         }
 
         [HttpDelete]

@@ -14,7 +14,7 @@ namespace ComicsShop
            
             var Logger = new LoggerConfiguration()
                 .WriteTo.File(@"Logs/log.log", rollingInterval: RollingInterval.Day)
-                .MinimumLevel.Debug()
+                .MinimumLevel.Information()
                 .CreateLogger();
 
             var Host = BuildWebHost(args);
