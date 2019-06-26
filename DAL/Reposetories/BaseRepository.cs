@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DAL.Reposetories
 {
@@ -23,13 +24,13 @@ namespace DAL.Reposetories
             dbSet.Remove(item);
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = dbSet;
 
             if (filter != null)
             {
-                query = query.Where(filter);
+                query =  query.Where(filter);
             }
 
             foreach (var includeProperty in includeProperties.Split
@@ -40,27 +41,27 @@ namespace DAL.Reposetories
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
-        public IEnumerable<TEntity> Get()
+        public async Task<IEnumerable<TEntity>> Get()
         {
-            return dbSet.ToList();
+            return await dbSet.ToListAsync();
         }
 
-        public TEntity Get(Guid id)
+        public async Task<TEntity> Get(Guid id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public void Insert(TEntity item)
+        public async Task Insert(TEntity item)
         {
-            dbSet.Add(item);
+            await dbSet.AddAsync(item);
         }
 
         public void SetStateModified(TEntity entity)
@@ -83,9 +84,9 @@ namespace DAL.Reposetories
                 dbSet.Update(item);
             }
         }
-        public int Save()
+        public async Task<int> Save()
         {
-           return context.SaveChanges();
+           return await context.SaveChangesAsync();
         }
     }
 }

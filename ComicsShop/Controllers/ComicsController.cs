@@ -8,6 +8,7 @@ using ComicsShop.BLL.Interfaces;
 using Serilog;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace ComicsShop.Web.Controllers
 {
@@ -29,40 +30,34 @@ namespace ComicsShop.Web.Controllers
 
         [HttpPost]
        //[Authorize(Roles ="ComicsSeller")]
-        public void CreateComics(ComicsDTO comicsDTO)
+        public async Task<ActionResult> CreateComics(ComicsDTO comicsDTO)
         {
-            try
-            {
-                 throw new Exception("lo lo lo lo lo lo lolomjghfcngmjgfhngfhmgjfthfn vnjmfdrgbfghfmtdhnf bvcn gmftj g4y47647777777777777777777777777777777");
-                
-                //_comicsManager.Insert(comicsDTO);
-                
-            }
-            catch(Exception ex)
-            {
-                _loger.LogError(ex.Message);
-            }
+                await _comicsManager.Insert(comicsDTO);
+            return Ok();  
         }
 
         [HttpDelete]
         [Authorize(Roles = "ComicsSeller")]
-        public void DeleteComics(ComicsDTO comicsDTO)
+        public async Task<ActionResult> DeleteComics(ComicsDTO comicsDTO)
         {
-            var comics =_comicsManager.GetAll().Where(x => x.Name == comicsDTO.Name && x.Series == comicsDTO.Series).FirstOrDefault();
-            _comicsManager.Delete(comics.Id);
+            var cs = await _comicsManager.GetAll();
+            var comics = cs.Where(x => x.Id == comicsDTO.Id).FirstOrDefault();
+            await _comicsManager.Delete(comics.Id);
+            return Ok();
         }
 
         [HttpPut]
         //[Authorize(Roles = "ComicsSeller")]
-        public void UpdateComics(ComicsDTO comicsDTO)
+        public async Task<ActionResult> UpdateComics(ComicsDTO comicsDTO)
         {
-            _comicsManager.Update(comicsDTO);
+            await _comicsManager.Update(comicsDTO);
+            return Ok();
         }
         
         [HttpGet]
-        public IEnumerable<ComicsDTO> GetAllComics()
+        public async Task<ActionResult> GetAllComics()
         {
-            return _comicsManager.GetAll();
+            return Ok(await _comicsManager.GetAll());
         }
 
 

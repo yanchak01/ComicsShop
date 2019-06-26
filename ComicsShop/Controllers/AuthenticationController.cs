@@ -31,7 +31,7 @@ namespace ComicsShop.Controllers
 
         [AllowAnonymous]
         [HttpPost("GetToken")]
-        public async Task GetToken(LoginDTO request)
+        public async Task<ActionResult> GetToken(LoginDTO request)
         {
 
             var identity = await authenticateService.GetIdentity(request.UserName, request.Password);
@@ -41,6 +41,7 @@ namespace ComicsShop.Controllers
              await Response.WriteAsync(JsonConvert.SerializeObject(token,
                 new JsonSerializerSettings { Formatting = Formatting.Indented }
             ));
+            return Ok();
         }
 
         [AllowAnonymous]

@@ -25,11 +25,8 @@ namespace AuthorizationsAboutToken.Services
             this.signInManager = signInManager;
         }
 
-        public bool RetTrue()
-        {
-            return true;
-        }
-        public bool IsValidUser(LoginDTO loginDTO)
+        
+        public  bool IsValidUser(LoginDTO loginDTO)
         {
             var usering = mapper.Map<LoginDTO, ApplicationUser>(loginDTO);
 

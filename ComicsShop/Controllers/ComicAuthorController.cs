@@ -5,6 +5,7 @@ using ComicsShop.DTO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ComicsShop.Web.Controllers
 {
@@ -18,31 +19,30 @@ namespace ComicsShop.Web.Controllers
             _comicsAuthorManager = comicsAuthorManager;
         }
         [HttpPost]
-        public ActionResult<ComicsAuthorDTO> CreateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
+        public async Task<ActionResult> CreateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
 
-            _comicsAuthorManager.Insert(comicsAuthorDTO);
+             await _comicsAuthorManager.Insert(comicsAuthorDTO);
             return Ok(comicsAuthorDTO);
 
         }
         [HttpPut]
-        public ActionResult<ComicsAuthorDTO> UpdateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
+        public async Task<ActionResult> UpdateComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
-             _comicsAuthorManager.Update(comicsAuthorDTO);
+             await _comicsAuthorManager.Update(comicsAuthorDTO);
             return Ok(comicsAuthorDTO);
         }
         [HttpDelete]
-        public ActionResult DeleteComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
+        public async Task<ActionResult> DeleteComicsAuthor(ComicsAuthorDTO comicsAuthorDTO)
         {
-            _comicsAuthorManager.Delete(comicsAuthorDTO);
+           await _comicsAuthorManager.Delete(comicsAuthorDTO);
             return Ok();
         }
         [HttpGet]
-        public ActionResult<IEnumerable<ComicsAuthorDTO>> GetAll()
+        public async Task<ActionResult> GetAll()
         {
-            var b = _comicsAuthorManager.Get();
-            ComicsAuthorDTO[] bbb= _comicsAuthorManager.Get().ToArray();
-            return bbb;
+            var b = await _comicsAuthorManager.Get();
+            return Ok(b);
         }
        
     }

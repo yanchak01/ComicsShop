@@ -5,51 +5,94 @@ using System;
 using System.Collections.Generic;
 using ComicsShop.BLL.Interfaces;
 using DAL.DBModels;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace BLL.Managers
 {
     public class ComicsManager : IComicsManager
     {
-        private readonly IBaseRepository<Comics> baseRepository;
-        private readonly IMapper mapper;
-        public ComicsManager(IBaseRepository<Comics> baseRepository, IMapper mapper)
+        private readonly IBaseRepository<Comics> _baseRepository;
+        private readonly IMapper _mapper;
+        private readonly ILogger<ComicsManager> _loger;
+        public ComicsManager(IBaseRepository<Comics> baseRepository, IMapper mapper, ILogger<ComicsManager> logger)
         {
-            this.baseRepository = baseRepository;
-            this.mapper = mapper;
+            _baseRepository = baseRepository;
+            _mapper = mapper;
+            _loger = logger;
         }
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            Comics com = baseRepository.Get(id);
-            baseRepository.Delete(com);
-            baseRepository.Save();
-        }
-
-        public IEnumerable<ComicsDTO> GetAll()
-        {
-           var comics = baseRepository.Get();
-            return mapper.Map<IEnumerable<Comics>, IEnumerable<ComicsDTO>>(comics);
-        }
-
-        public ComicsDTO GetById(Guid id)
-        {
-            var com = baseRepository.Get(id);
-            return mapper.Map<Comics, ComicsDTO>(com);
+            try
+            {
+                Comics com = await _baseRepository.Get(id);
+                _baseRepository.Delete(com);
+                await _baseRepository.Save();
+            }
+            catch(Exception ex)
+            {
+                _loger.LogError(ex.Message);
+            }
         }
 
-        public void Insert(ComicsDTO comicsDTO)
+        public async Task<IEnumerable<ComicsDTO>> GetAll()
         {
-            Comics comics = mapper.Map<ComicsDTO, Comics>(comicsDTO);
-            comics.DateCreated = DateTime.Now;
-            comics.DateModified = DateTime.Now;
-            baseRepository.Insert(comics);
-            baseRepository.Save();
+            try
+            {
+                var comics = await _baseRepository.Get();
+                return _mapper.Map<IEnumerable<Comics>, IEnumerable<ComicsDTO>>(comics);
+            }
+            catch (Exception ex)
+            {
+                _loger.LogError(ex.Message);
+                List<ComicsDTO> comicsDTOs = new List<ComicsDTO>();
+                return comicsDTOs;
+            }
         }
 
-        public void Update(ComicsDTO comicsDTO)
+        public async Task<ComicsDTO> GetById(Guid id)
         {
-            Comics comics = mapper.Map<ComicsDTO, Comics>(comicsDTO);
-            baseRepository.Update(comics);
-            baseRepository.Save();
+            try
+            {
+                var com = await _baseRepository.Get(id);
+                return _mapper.Map<Comics, ComicsDTO>(com);
+            }
+            catch(Exception ex)
+            {
+                _loger.LogError(ex.Message);
+                return new ComicsDTO();
+            }
+        }
+
+        public async Task Insert(ComicsDTO comicsDTO)
+        {
+            try
+            {
+                Comics comics = _mapper.Map<ComicsDTO, Comics>(comicsDTO);
+                comics.DateCreated = DateTime.Now;
+                comics.DateModified = DateTime.Now;
+                await _baseRepository.Insert(comics);
+                await _baseRepository.Save();
+            }
+            catch(Exception ex)
+            {
+                _loger.LogError(ex.Message);
+
+            }
+        }
+
+        public async Task Update(ComicsDTO comicsDTO)
+        {
+            try
+            {
+                Comics comics = _mapper.Map<ComicsDTO, Comics>(comicsDTO);
+                _baseRepository.Update(comics);
+                await _baseRepository.Save();
+            }
+            catch(Exception ex)
+            {
+                _loger.LogError(ex.Message);
+            }
         }
     }
 }
