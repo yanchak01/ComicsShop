@@ -2,6 +2,7 @@
 using AutoMapper;
 using ComicsShop.DTO;
 using DAL.DBModels;
+using System.Collections.Generic;
 
 namespace BLL.Services
 {
@@ -9,10 +10,17 @@ namespace BLL.Services
     {
         public MappingProfile()
         {
-            CreateMap<Comics, ComicsDTO>().ReverseMap();
+            CreateMap<ComicsDTO, Comics>()
+                .ForMember(x => x.Authors, cx => cx.MapFrom(ux => ux.ComicsAuthors));
+            CreateMap<Comics,ComicsDTO>()
+                 .ForMember(x => x.ComicsAuthors, cx => cx.MapFrom(ux => ux.Authors));
             CreateMap<LoginDTO, ApplicationUser>().ReverseMap();
             CreateMap<TokenRequest, LoginDTO>().ReverseMap();
-            CreateMap<ArtistDTO, ComicsAuthor>().ReverseMap();
+            CreateMap<ComicsAuthorDTO, ComicsAuthor>().ReverseMap();
+            //CreateMap<IEnumerable<ComicsAuthorDTO>, IEnumerable<ComicsAuthor>>().ReverseMap();
+            CreateMap<ComicsDTO, ComicsAuthorDTO>().ReverseMap();
+                
         }
+       
     }
 }

@@ -99,8 +99,8 @@ namespace AuthorizationsAboutToken.Services
              {
                  new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
                  new Claim(ClaimsIdentity.DefaultRoleClaimType,userRole),
-                 new Claim("UserId", user.Id),
-                 new Claim("Email", user.Email)
+                 new Claim(ClaimTypes.NameIdentifier, user.Id),
+                 new Claim(ClaimTypes.Email, user.Email)
              };
 
                     var claimIdentity =
@@ -115,6 +115,7 @@ namespace AuthorizationsAboutToken.Services
                 _loger.LogError(ex.Message);
                 return null;
             }
+           
             finally
             {
 
@@ -143,7 +144,7 @@ namespace AuthorizationsAboutToken.Services
                         await _userManager.AddToRoleAsync(user, role);
                     }
 
-
+                   
                 }
             }
             catch(Exception ex)

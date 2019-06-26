@@ -13,9 +13,13 @@ namespace BLL.Managers
     public class ComicsManager : IComicsManager
     {
         private readonly IBaseRepository<Comics> _baseRepository;
+        private readonly IBaseRepository<ComicsAuthorComics> _compoundRRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<ComicsManager> _loger;
-        public ComicsManager(IBaseRepository<Comics> baseRepository, IMapper mapper, ILogger<ComicsManager> logger)
+        public ComicsManager(IBaseRepository<Comics> baseRepository, 
+            IMapper mapper, 
+            ILogger<ComicsManager> logger
+            )
         {
             _baseRepository = baseRepository;
             _mapper = mapper;
@@ -68,18 +72,32 @@ namespace BLL.Managers
         {
             try
             {
+
                 Comics comics = _mapper.Map<ComicsDTO, Comics>(comicsDTO);
+
+               
+
                 comics.DateCreated = DateTime.Now;
                 comics.DateModified = DateTime.Now;
+            List<ComicsAuthorComics> list = new List<ComicsAuthorComics>();
+                foreach (var item in comicsDTO.ComicsAuthors)
+                {
+                   list.Add(new ComicsAuthorComics() {
+                       Comics=comics,
+                       ComicsAuthorId=item.ComicsAuthorId
+                    });
+                    
+                }
+                comics.Authors = list;
                 await _baseRepository.Insert(comics);
                 await _baseRepository.Save();
-            }
+        }
             catch(Exception ex)
             {
                 _loger.LogError(ex.Message);
 
             }
-        }
+}
 
         public async Task Update(ComicsDTO comicsDTO)
         {

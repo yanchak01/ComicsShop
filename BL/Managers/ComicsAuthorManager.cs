@@ -76,14 +76,14 @@ namespace BLL.Managers
 
         public async Task <IEnumerable<ComicsAuthorDTO>> Get()
         {
-            IEnumerable<ComicsAuthorDTO> comicsAuthorDTOs;
+            
             try
             {
                 var comicsAuthors = await _baseRepository.Get();
-                comicsAuthorDTOs = _mapper.Map<IEnumerable<ComicsAuthor>, IEnumerable<ComicsAuthorDTO>>(comicsAuthors);
+               var comicsAuthorDTOs = _mapper.Map<IEnumerable<ComicsAuthor>, IEnumerable<ComicsAuthorDTO>>(comicsAuthors);
                 return comicsAuthorDTOs;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 List<ComicsAuthorDTO> comicsAuthorDTOs1 = new List<ComicsAuthorDTO>();
                 _loger.LogError(ex.Message);

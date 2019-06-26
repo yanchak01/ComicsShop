@@ -33,7 +33,7 @@ namespace ComicsShop.Controllers
         [HttpPost("GetToken")]
         public async Task<ActionResult> GetToken(LoginDTO request)
         {
-
+            
             var identity = await authenticateService.GetIdentity(request.UserName, request.Password);
 
             var token = authenticateService.GenerateToken(identity);

@@ -15,7 +15,7 @@ namespace DAL
         DbSet<Comics> Comicses { get; set; }
         DbSet<ComicsAuthor> ComicsAuthors { get; set; }
         DbSet<Tag> Tags { get; set; }
-        DbSet<ComicsAuthorComics> CComicsAuthorComics { get; set; }
+        DbSet<ComicsAuthorComics> ComicsAuthorComics { get; set; }
         DbSet<TagComics> TagComics { get; set; }
         #endregion
 

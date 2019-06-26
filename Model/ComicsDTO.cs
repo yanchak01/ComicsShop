@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DAL.DBModels;
+using System.Collections.Generic;
 
 namespace ComicsShop.DTO
 {
@@ -17,6 +18,6 @@ namespace ComicsShop.DTO
      
         public ComicsType ComicsType { get; set; }
 
-        public ICollection<ComicsAuthorDTO> Authors { get; set; }
+        public ICollection<ComicsAuthorComics> ComicsAuthors { get; set; }
     }
 }
