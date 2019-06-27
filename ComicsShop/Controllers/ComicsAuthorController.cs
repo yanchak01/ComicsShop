@@ -11,10 +11,10 @@ namespace ComicsShop.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ComicAuthorController:ControllerBase
+    public class ComicsAuthorController:ControllerBase
     {
         private readonly IComicsAuthorManager _comicsAuthorManager;
-        public ComicAuthorController(IComicsAuthorManager comicsAuthorManager)
+        public ComicsAuthorController(IComicsAuthorManager comicsAuthorManager)
         {
             _comicsAuthorManager = comicsAuthorManager;
         }
