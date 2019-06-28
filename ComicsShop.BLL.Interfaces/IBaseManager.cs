@@ -1,16 +1,19 @@
-﻿using ComicsShop.DTO;
+﻿using ComicsShop.DAL.DBModels;
+using ComicsShop.DTO;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ComicsShop.BLL.Interfaces
 {
-    public interface IBaseManager<TEntity> where TEntity:EntityDTO
+    public interface IBaseManager<TEntityDTO,TEntityDBO> where TEntityDTO:EntityDTO where TEntityDBO:Entity
     {
-        Task Insert(TEntity entity);
-        Task Update(TEntity entity);
-        Task Delete(TEntity entity);
+        Task Insert(TEntityDTO entity);
+        Task Update(TEntityDTO entity);
+        Task Delete(TEntityDTO entity);
+        Task<IEnumerable<TEntityDTO>>Get();
+        Task<TEntityDTO> Get(Guid Id);
+      
 
-        Task<IEnumerable<TEntity>>Get();
-        Task<TEntity> Get(TEntity entity); 
     }
 }

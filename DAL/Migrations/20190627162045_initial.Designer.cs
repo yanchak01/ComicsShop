@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ComicsShop.DAL.Migrations
 {
     [DbContext(typeof(ComicsDbContext))]
-    [Migration("20190622211742_Initial")]
-    partial class Initial
+    [Migration("20190627162045_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,7 +125,7 @@ namespace ComicsShop.DAL.Migrations
 
                     b.HasIndex("ComicsAuthorId");
 
-                    b.ToTable("CComicsAuthorComics");
+                    b.ToTable("ComicsAuthorComics");
                 });
 
             modelBuilder.Entity("DAL.DBModels.Tag", b =>

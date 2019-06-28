@@ -7,31 +7,33 @@ using ComicsShop.BLL.Interfaces;
 using DAL.DBModels;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using ComicsShop.DAL.Interfaces.IRepo;
 
 namespace BLL.Managers
 {
     public class ComicsManager : IComicsManager
     {
-        private readonly IBaseRepository<Comics> _baseRepository;
+        private readonly IComicsRepository<Comics> _comicsRepository;
+        
         private readonly IBaseRepository<ComicsAuthorComics> _compoundRRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<ComicsManager> _loger;
-        public ComicsManager(IBaseRepository<Comics> baseRepository, 
+        public ComicsManager(IComicsRepository<Comics> comicsRepository, 
             IMapper mapper, 
             ILogger<ComicsManager> logger
             )
         {
-            _baseRepository = baseRepository;
+            _comicsRepository = comicsRepository;
             _mapper = mapper;
             _loger = logger;
         }
-        public async Task Delete(Guid id)
+        public async Task Delete(ComicsDTO comicsDTO)
         {
             try
             {
-                Comics com = await _baseRepository.Get(id);
-                _baseRepository.Delete(com);
-                await _baseRepository.Save();
+                Comics com = await _comicsRepository.Get(comicsDTO.Id);
+                _comicsRepository.Delete(com);
+                await _comicsRepository.Save();
             }
             catch(Exception ex)
             {
@@ -39,11 +41,12 @@ namespace BLL.Managers
             }
         }
 
-        public async Task<IEnumerable<ComicsDTO>> GetAll()
+        public async Task<IEnumerable<ComicsDTO>> Get()
         {
             try
             {
-                var comics = await _baseRepository.Get();
+                var comics = await _comicsRepository.Get();
+                
                 return _mapper.Map<IEnumerable<Comics>, IEnumerable<ComicsDTO>>(comics);
             }
             catch (Exception ex)
@@ -54,11 +57,11 @@ namespace BLL.Managers
             }
         }
 
-        public async Task<ComicsDTO> GetById(Guid id)
+        public async Task<ComicsDTO> Get(Guid id)
         {
             try
             {
-                var com = await _baseRepository.Get(id);
+                var com = await _comicsRepository.Get(id);
                 return _mapper.Map<Comics, ComicsDTO>(com);
             }
             catch(Exception ex)
@@ -68,34 +71,33 @@ namespace BLL.Managers
             }
         }
 
+        public async Task GettAllcomisFromAuthors(params ComicsAuthorDTO[] comicsAuthors)
+        {
+            try
+            {
+                var b = comicsAuthors;
+
+                var com = await _comicsRepository.Get();
+            }
+            catch (Exception ex)
+            {
+
+                _loger.LogError(ex.Message);
+            }
+        }
         public async Task Insert(ComicsDTO comicsDTO)
         {
             try
             {
-
                 Comics comics = _mapper.Map<ComicsDTO, Comics>(comicsDTO);
-
-               
-
                 comics.DateCreated = DateTime.Now;
                 comics.DateModified = DateTime.Now;
-            List<ComicsAuthorComics> list = new List<ComicsAuthorComics>();
-                foreach (var item in comicsDTO.ComicsAuthors)
-                {
-                   list.Add(new ComicsAuthorComics() {
-                       Comics=comics,
-                       ComicsAuthorId=item.ComicsAuthorId
-                    });
-                    
-                }
-                comics.Authors = list;
-                await _baseRepository.Insert(comics);
-                await _baseRepository.Save();
+                await _comicsRepository.Insert(comics);
+                await _comicsRepository.Save();
         }
             catch(Exception ex)
             {
                 _loger.LogError(ex.Message);
-
             }
 }
 
@@ -104,8 +106,8 @@ namespace BLL.Managers
             try
             {
                 Comics comics = _mapper.Map<ComicsDTO, Comics>(comicsDTO);
-                _baseRepository.Update(comics);
-                await _baseRepository.Save();
+                _comicsRepository.Update(comics);
+                await _comicsRepository.Save();
             }
             catch(Exception ex)
             {

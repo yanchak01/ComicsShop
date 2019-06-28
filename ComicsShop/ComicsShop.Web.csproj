@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Logs\log20190627.log" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

@@ -40,9 +40,9 @@ namespace ComicsShop.Web.Controllers
         [Authorize(Roles = "ComicsSeller")]
         public async Task<ActionResult> DeleteComics(ComicsDTO comicsDTO)
         {
-            var cs = await _comicsManager.GetAll();
+            var cs = await _comicsManager.Get();
             var comics = cs.Where(x => x.Id == comicsDTO.Id).FirstOrDefault();
-            await _comicsManager.Delete(comics.Id);
+            await _comicsManager.Delete(comics);
             return Ok();
         }
 
@@ -57,9 +57,14 @@ namespace ComicsShop.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllComics()
         {
-            return Ok(await _comicsManager.GetAll());
+            return Ok(await _comicsManager.Get());
         }
 
+        //[HttpGet]
+        //public async Task ReturnComicsFromAuthor(params ComicsAuthorDTO[] comicsAuthors)
+        //{
+            
+        //}
 
     }
 }

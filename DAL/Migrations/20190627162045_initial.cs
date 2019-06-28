@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ComicsShop.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -202,7 +202,7 @@ namespace ComicsShop.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CComicsAuthorComics",
+                name: "ComicsAuthorComics",
                 columns: table => new
                 {
                     ComicsAuthorId = table.Column<Guid>(nullable: false),
@@ -210,15 +210,15 @@ namespace ComicsShop.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CComicsAuthorComics", x => new { x.ComicsId, x.ComicsAuthorId });
+                    table.PrimaryKey("PK_ComicsAuthorComics", x => new { x.ComicsId, x.ComicsAuthorId });
                     table.ForeignKey(
-                        name: "FK_CComicsAuthorComics_ComicsAuthors_ComicsAuthorId",
+                        name: "FK_ComicsAuthorComics_ComicsAuthors_ComicsAuthorId",
                         column: x => x.ComicsAuthorId,
                         principalTable: "ComicsAuthors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CComicsAuthorComics_Comicses_ComicsId",
+                        name: "FK_ComicsAuthorComics_Comicses_ComicsId",
                         column: x => x.ComicsId,
                         principalTable: "Comicses",
                         principalColumn: "Id",
@@ -287,8 +287,8 @@ namespace ComicsShop.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CComicsAuthorComics_ComicsAuthorId",
-                table: "CComicsAuthorComics",
+                name: "IX_ComicsAuthorComics_ComicsAuthorId",
+                table: "ComicsAuthorComics",
                 column: "ComicsAuthorId");
 
             migrationBuilder.CreateIndex(
@@ -315,7 +315,7 @@ namespace ComicsShop.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CComicsAuthorComics");
+                name: "ComicsAuthorComics");
 
             migrationBuilder.DropTable(
                 name: "TagComics");

@@ -3,6 +3,7 @@ using AutoMapper;
 using ComicsShop.DTO;
 using DAL.DBModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Services
 {
@@ -11,16 +12,24 @@ namespace BLL.Services
         public MappingProfile()
         {
             CreateMap<ComicsDTO, Comics>()
-                .ForMember(x => x.Authors, cx => cx.MapFrom(ux => ux.ComicsAuthors));
-            CreateMap<Comics,ComicsDTO>()
-                 .ForMember(x => x.ComicsAuthors, cx => cx.MapFrom(ux => ux.Authors));
+                .ForMember(x => x.Authors, x => x.MapFrom(src => src.ComicsAuthors.Select(y => new ComicsAuthorComics
+                {
+                    ComicsId = src.Id,
+                    ComicsAuthorId = y.Id
+                })));
+
+            CreateMap<Comics, ComicsDTO>()
+                .ForMember(x => x.ComicsAuthors, x => x.MapFrom(src => src.Authors.Select(a=>a.ComicsAuthor)));
             CreateMap<LoginDTO, ApplicationUser>().ReverseMap();
             CreateMap<TokenRequest, LoginDTO>().ReverseMap();
             CreateMap<ComicsAuthorDTO, ComicsAuthor>().ReverseMap();
-            //CreateMap<IEnumerable<ComicsAuthorDTO>, IEnumerable<ComicsAuthor>>().ReverseMap();
             CreateMap<ComicsDTO, ComicsAuthorDTO>().ReverseMap();
-                
+            CreateMap<ComicsAuthorDTO, ComicsAuthorComics>()
+               .ForMember(x => x.ComicsAuthorId, x => x.MapFrom(src => src.Id));
+            CreateMap<ComicsDTO, ComicsAuthorComics>()
+                .ForMember(x => x.ComicsId, x => x.MapFrom(src => src.Id));
+            
         }
-       
+        
     }
 }

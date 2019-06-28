@@ -17,6 +17,7 @@ namespace DAL.Reposetories
         {
             this.context = context;
             dbSet = context.Set<TEntity>();
+            
         }
 
         public void Delete(TEntity item)
@@ -24,7 +25,7 @@ namespace DAL.Reposetories
             dbSet.Remove(item);
         }
 
-        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public virtual async  Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -49,7 +50,7 @@ namespace DAL.Reposetories
             }
         }
 
-        public async Task<IEnumerable<TEntity>> Get()
+        public virtual async Task<IEnumerable<TEntity>> Get()
         {
             return await dbSet.ToListAsync();
         }

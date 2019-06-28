@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DAL\ComicsShop.DAL.csproj" />
     <ProjectReference Include="..\Model\ComicsShop.DTO.csproj" />
   </ItemGroup>
 

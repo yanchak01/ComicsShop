@@ -1,9 +1,9 @@
 ﻿using ComicsShop.DTO;
-using System;
+using DAL.DBModels;
 
 namespace ComicsShop.BLL.Interfaces
 {
-    public interface IComicsAuthorManager : IBaseManager<ComicsAuthorDTO>
+    public interface IComicsAuthorManager : IBaseManager<ComicsAuthorDTO,ComicsAuthor>
     { 
 
     }

@@ -21,8 +21,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ComicsShop.BLL.Interfaces;
 using OtherLogic.IRepo;
-using Microsoft.AspNetCore;
 using ComicsShop.DAL;
+using ComicsShop.DAL.Interfaces.IRepo;
 
 namespace ComicsShop
 {
@@ -100,6 +100,7 @@ namespace ComicsShop
             services.AddScoped<IBaseRepository<ComicsAuthor>,BaseRepository<ComicsAuthor>>();
             //services.AddScoped<IBaseRepository<ArtistDTO>, BaseRepository<ArtistDTO>>();
             services.AddScoped<IBaseRepository<TokenManagemant>, BaseRepository<TokenManagemant>>();
+            services.AddScoped<IComicsRepository<Comics>, ComicsRepository>();
             #endregion
 
             services.AddScoped<IComicsManager, ComicsManager>();

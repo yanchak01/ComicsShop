@@ -12,11 +12,11 @@ namespace DAL
         }
 
         #region Tables
-        DbSet<Comics> Comicses { get; set; }
-        DbSet<ComicsAuthor> ComicsAuthors { get; set; }
-        DbSet<Tag> Tags { get; set; }
-        DbSet<ComicsAuthorComics> ComicsAuthorComics { get; set; }
-        DbSet<TagComics> TagComics { get; set; }
+        public DbSet<Comics> Comicses { get; set; }
+        public DbSet<ComicsAuthor> ComicsAuthors { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ComicsAuthorComics> ComicsAuthorComics { get; set; }
+        public DbSet<TagComics> TagComics { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -35,6 +35,12 @@ namespace DAL
                 .HasMany(ec => ec.Authors)
                 .WithOne(ec => ec.Comics)
                 .HasForeignKey(ec => ec.ComicsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ComicsAuthor>()
+                .HasMany(ec => ec.Authors)
+                .WithOne(ec => ec.ComicsAuthor)
+                .HasForeignKey(ec => ec.ComicsAuthorId)
                 .OnDelete(DeleteBehavior.Cascade);
 
            

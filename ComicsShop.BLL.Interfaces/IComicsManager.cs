@@ -1,17 +1,10 @@
 ﻿using ComicsShop.DTO;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using DAL.DBModels;
 
 namespace ComicsShop.BLL.Interfaces
 {
-    public interface IComicsManager
+    public interface IComicsManager:IBaseManager<ComicsDTO,Comics>
     {
-        Task Insert(ComicsDTO comicsDTO);
-        Task Update(ComicsDTO comicsDTO);
-        Task Delete(Guid id);
-        Task <IEnumerable<ComicsDTO>> GetAll();
-        Task <ComicsDTO> GetById(Guid id);
-
+ 
     }
 }

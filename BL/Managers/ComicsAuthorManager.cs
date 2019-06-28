@@ -91,11 +91,10 @@ namespace BLL.Managers
             }
         }
 
-        public async Task<ComicsAuthorDTO> Get(ComicsAuthorDTO entity)
+        public async Task<ComicsAuthorDTO> Get(Guid Id)
         {
             try
             {
-                var Id = entity.Id;
                 var comicsAuthor = await _baseRepository.Get(x => x.Id == Id);
                 var yy = comicsAuthor.First();
                 return _mapper.Map<ComicsAuthor, ComicsAuthorDTO>(yy);

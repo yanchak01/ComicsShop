@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ComicsShop.Common\ComicsShop.Common.csproj" />
-    <ProjectReference Include="..\DAL\ComicsShop.DAL.csproj" />
   </ItemGroup>
 
 </Project>
