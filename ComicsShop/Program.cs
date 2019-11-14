@@ -1,24 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Sinks;
+using System;
 
 namespace ComicsShop
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+           
+            var Logger = new LoggerConfiguration()
+                .WriteTo.File(@"Logs/log.log", rollingInterval: RollingInterval.Day)
+                .MinimumLevel.Information()
+                .CreateLogger();
+
+            var Host = BuildWebHost(args);
+
+            Log.Logger = Logger;
+
+            try
+            {
+                Startup.WebHostRun(Host, args).Run();
+            }
+            catch(Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+                
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>().UseSerilog().Build();
+
+
     }
 }

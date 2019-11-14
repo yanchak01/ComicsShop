@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.DBModels
+namespace BLL.Managers
 {
-    public class Author
+   public class TagManager
     {
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ComicsShop.DAL.DBModels;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.DBModels
 {
-    public class Tag
+    public class Tag:Entity
     {
+        public string Name { get; set; }
+        public ICollection<TagComics> Tags { get; set; }
     }
 }
